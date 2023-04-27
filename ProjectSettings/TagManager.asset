@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Bishop
+  - Knight
+  - Pawn
+  - King
+  - Queen
+  - Rook
   layers:
   - Default
   - TransparentFX

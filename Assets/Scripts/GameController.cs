@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+    //Spawn in pieces
     public GameObject blackKing;
     public GameObject blackPawn;
     public GameObject blackBishop;
@@ -37,7 +38,7 @@ public class GameController : MonoBehaviour
 
     private void SpawnPawns(float pawnXPos, float pawnYPos, GameObject pawnColor)
     {
-        for (int i = 0; i < 8; i++)
+        for(int i = 0; i < 8; i++)
         {
             Instantiate(pawnColor, new Vector3(pawnXPos, pawnYPos, -1), Quaternion.identity);
             pawnXPos = pawnXPos - -1.25f;

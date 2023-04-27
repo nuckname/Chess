@@ -218,6 +218,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -291,6 +292,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45a052f85c3978d4bbd6118feb012d7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlightSquare: {fileID: 845118155421117905, guid: c7cff37f9aa16694fb5f5aa7c90f32b9, type: 3}
+  moveableLocationCircle: {fileID: 939143525464860019, guid: ffded954936d4394b9be6deb29fafacb, type: 3}
+  takeLocationSquare: {fileID: 2954360253626550671, guid: 2ace13dbcfc79fd49b4f16ff20c4ca2f, type: 3}
 --- !u!1 &1960082232
 GameObject:
   m_ObjectHideFlags: 0
@@ -326,6 +342,12 @@ MonoBehaviour:
   blackRook: {fileID: 2590525061667283286, guid: 4e0a06e12350dcc4da282be85f1ceac1, type: 3}
   blackQueen: {fileID: 7685556921196313556, guid: 5e62ff0e1bf8c8749b965fd3f8d57f17, type: 3}
   blackKnight: {fileID: 2931697618977766913, guid: fc1762843ffe5e743a5eb84f7d0356fe, type: 3}
+  whiteKing: {fileID: 836510555783915088, guid: a568ebc159131b34586209121bbd7705, type: 3}
+  whitePawn: {fileID: 4416156025017767531, guid: 7a3bd18c910008f46bca99c573fd2579, type: 3}
+  whiteBishop: {fileID: 3672773313553121037, guid: 67211d74678b2564b8974a921ef4091d, type: 3}
+  whiteRook: {fileID: 6682138976413144635, guid: 4392bda509f05144b84b0b549226f5b7, type: 3}
+  whiteQueen: {fileID: 7797307991430422918, guid: 3d82d171ef3c4ca49b4df01baa0852b7, type: 3}
+  whiteKnight: {fileID: 5777851007237048558, guid: adc32619b6b5de4419c8112face09831, type: 3}
 --- !u!4 &1960082234
 Transform:
   m_ObjectHideFlags: 0
