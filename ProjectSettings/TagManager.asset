@@ -10,6 +10,8 @@ TagManager:
   - King
   - Queen
   - Rook
+  - Undefined
+  - CanMoveCircle
   layers:
   - Default
   - TransparentFX

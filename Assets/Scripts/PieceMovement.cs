@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class PieceMovement : MonoBehaviour
 {
+    
     //moves pieces.
+    //object clicker returns object clicked.
 
     void Start()
     {
         
     }
 
-    void Update()
-    {
-        
-    }
+    //dont put it in update.
+
 }
