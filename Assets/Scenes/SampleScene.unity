@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45a052f85c3978d4bbd6118feb012d7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlightSquare: {fileID: 845118155421117905, guid: c7cff37f9aa16694fb5f5aa7c90f32b9, type: 3}
+  highlightSquare: {fileID: 8907847252334520898, guid: 69394d057d8b4604483e0e321d048d2c, type: 3}
   moveableLocationCircle: {fileID: 939143525464860019, guid: ffded954936d4394b9be6deb29fafacb, type: 3}
   takeLocationSquare: {fileID: 2954360253626550671, guid: 2ace13dbcfc79fd49b4f16ff20c4ca2f, type: 3}
 --- !u!1 &1960082232
@@ -296,3 +296,4 @@ MonoBehaviour:
   xHeight: 8
   yHeight: 8
   cam: {fileID: 519420032}
+  debugSqaure: {fileID: 8907847252334520898, guid: 69394d057d8b4604483e0e321d048d2c, type: 3}

@@ -19,13 +19,23 @@ public class ObjectCliker : MonoBehaviour
 
     private GirdManager gridManager;
 
+    public Dictionary<Vector2, Tile> locationOfTiles;
+
     private void Start()
     {
         gridManager = FindObjectOfType<GirdManager>();
-        Dictionary<Vector2, Tile> locationOfTiles = gridManager.tiles;
+        //Dictionary<Vector2, Tile> locationOfTiles = gridManager.tiles;
+        locationOfTiles = gridManager.tiles;
 
-        Debug.Log("In other script");
-        Debug.Log(locationOfTiles[new Vector2(2, 3)]);
+        //Instantiate(moveableLocationCircle, locationOfTiles[new Vector2(1, 2)].transform.position, Quaternion.identity);
+        //Instantiate(moveableLocationCircle, new Vector3(locationOfTiles[new Vector2(1, 2)].transform.position.x, locationOfTiles[new Vector2(1, 2)].transform.position.y, -3), Quaternion.identity);
+
+        //Debug.Log(locationOfTiles.Keys);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //if circle collides w/ piece -> destroy that piece and everyhing after.
     }
 
     private void Update()
@@ -38,6 +48,7 @@ public class ObjectCliker : MonoBehaviour
             {
                 Vector3 pos = hit.collider.transform.position;
 
+                
                 if(currentHighlightSquare != null)
                 {
                     Destroy(currentHighlightSquare);
@@ -54,14 +65,8 @@ public class ObjectCliker : MonoBehaviour
                     currentMoveableLocationCircle = new GameObject[27];
                     //27 possible moves form one piece.
                 }
+                
 
-                //snap zone?
-                //if it hits anything.
-                //Draw everwhere it can go
-                //if it hits an object replace circle with square
-                //make the hitbox for the cricle the full square of the board.
-                //square can take
-                //only allowed to move on cricle or sqaure.
                 if(hit.collider.gameObject)
                 {
                     currentHighlightSquare = Instantiate(highlightSquare, new Vector3(pos.x, pos.y, -3), Quaternion.identity);
@@ -70,57 +75,68 @@ public class ObjectCliker : MonoBehaviour
                 if(hit.collider.gameObject.tag == "CanMoveCircle")
                 {
                     Destroy(currentHighlightSquare);
+
                     lastClickedObject.transform.position = new Vector3(pos.x, pos.y, -3);
                 }
 
+                //If i line everything up it should be in the dictionary.
+                //then just pos.x + 2 and pos.y + 1 or something for an L shaped horse movement.
                 else if(hit.collider.gameObject.tag == "Knight")
                 {
-                    print("horse clicked");
-                    //going to be different for white ot black pieces.
-                    //cant use find tags becuase there are two clones of the same piece eg two bishops.
-                    //PAWNS: different colour pieces will have different directional moves -> black -x white +x.can use different tags for color -> mainly pawns.
-
-                    /*
-                    //use a method.
                     lastClickedObject = hit.collider.gameObject;
-                    //up right ^^
-                    currentMoveableLocationCircle[0] = Instantiate(moveableLocationCircle, new Vector3(pos.x + -1.2f, pos.y + -2.55f, -3), Quaternion.identity);
-                    //up left ^^
-                    currentMoveableLocationCircle[1] = Instantiate(moveableLocationCircle, new Vector3(pos.x + 1.2f, pos.y + 2.55f, -3), Quaternion.identity);
-                    //down right vv
-                    currentMoveableLocationCircle[2] = Instantiate(moveableLocationCircle, new Vector3(pos.x + -2.55f, pos.y + 1.2f, -3), Quaternion.identity);
-                   //down left vv
-                    currentMoveableLocationCircle[3] = Instantiate(moveableLocationCircle, new Vector3(pos.x + 2.55f, pos.y + -1.2f, -3), Quaternion.identity);
 
-                    currentMoveableLocationCircle[4] = Instantiate(moveableLocationCircle, new Vector3(pos.x + -0.2f, pos.y + -1.55f, -3), Quaternion.identity);
-
-                    currentMoveableLocationCircle[5] = Instantiate(moveableLocationCircle, new Vector3(pos.x + 2.55f, pos.y + -1.2f, -3), Quaternion.identity);
+                    currentMoveableLocationCircle[0] = Instantiate(moveableLocationCircle, new Vector3(locationOfTiles[new Vector2(pos.x + 1, pos.y - 2)].transform.position.x, locationOfTiles[new Vector2(pos.x + 1, pos.y - 2)].transform.position.y, -3), Quaternion.identity);
+                    currentMoveableLocationCircle[1] = Instantiate(moveableLocationCircle, new Vector3(locationOfTiles[new Vector2(pos.x - 1, pos.y - 2)].transform.position.x, locationOfTiles[new Vector2(pos.x - 1, pos.y - 2)].transform.position.y, -3), Quaternion.identity);
                     
-                    currentMoveableLocationCircle[6] = Instantiate(moveableLocationCircle, new Vector3(pos.x + 2.55f, pos.y + -1.2f, -3), Quaternion.identity);
-                    
-                    currentMoveableLocationCircle[7] = Instantiate(moveableLocationCircle, new Vector3(pos.x + 2.55f, pos.y + -1.2f, -3), Quaternion.identity);
-                    
-                    currentMoveableLocationCircle[8] = Instantiate(moveableLocationCircle, new Vector3(pos.x + 2.55f, pos.y + -1.2f, -3), Quaternion.identity);
-                    
-                    currentMoveableLocationCircle[9] = Instantiate(moveableLocationCircle, new Vector3(pos.x + 2.55f, pos.y + -1.2f, -3), Quaternion.identity);
-                    */
-                    /*
-                    //Vector2 tilePosition = new Vector2(1, 1);
-                    Vector2 tilePosition = locationOfTiles[1,2];
-                    //Tile tile = locationOfTiles[tilePosition];
-                    Vector3 spawnPosition = new Vector3(tilePosition.x, tilePosition.y, -3);
-                    Instantiate(moveableLocationCircle, spawnPosition, Quaternion.identity);
-                    */
                 }
 
                 else if(hit.collider.gameObject.tag == "Bishop")
                 {
+                    lastClickedObject = hit.collider.gameObject;
+
+                    int i = 0;
+                    int j = 0;
+                    try
+                    {
+                        while (true)
+                        {
+                            //this array is being replaced.
+                            currentMoveableLocationCircle[i] = Instantiate(moveableLocationCircle, new Vector3(locationOfTiles[new Vector2(pos.x - i, pos.y - i)].transform.position.x, locationOfTiles[new Vector2(pos.x - i, pos.y - i)].transform.position.y, -3), Quaternion.identity);
+                            currentMoveableLocationCircle[j] = Instantiate(moveableLocationCircle, new Vector3(locationOfTiles[new Vector2(pos.x + i, pos.y - i)].transform.position.x, locationOfTiles[new Vector2(pos.x + i, pos.y - i)].transform.position.y, -3), Quaternion.identity);
+                            i++;
+                            j++;
+                        }
+                    }
+                    catch (KeyNotFoundException e)
+                    {
+                        // Do nothing, just exit the loop
+                    }
+
+
+
+                    /*
+                    for (int i = 0; i <= 8; i++)
+                    {
+                        currentMoveableLocationCircle[i] = Instantiate(moveableLocationCircle, new Vector3(locationOfTiles[new Vector2(pos.x - i, pos.y - i)].transform.position.x, locationOfTiles[new Vector2(pos.x - i, pos.y - i)].transform.position.y, -3), Quaternion.identity);
+                    }
+
+                    for (int i = 0; i <= 8; i++)
+                    {
+                        currentMoveableLocationCircle[i] = Instantiate(moveableLocationCircle, new Vector3(locationOfTiles[new Vector2(pos.x + i, pos.y - i)].transform.position.x, locationOfTiles[new Vector2(pos.x + i, pos.y - i)].transform.position.y, -3), Quaternion.identity);
+                    }
+                    */
+                    print(pos.x + " " + pos.y);
+                    //currentMoveableLocationCircle[0] = Instantiate(moveableLocationCircle, new Vector3(locationOfTiles[new Vector2(pos.x - 1, pos.y - 1)].transform.position.x, locationOfTiles[new Vector2(pos.x - 1, pos.y - 1)].transform.position.y, -3), Quaternion.identity);
+                    //currentMoveableLocationCircle[0] = Instantiate(moveableLocationCircle, new Vector3(locationOfTiles[new Vector2(pos.x + 1, pos.y - 1)].transform.position.x, locationOfTiles[new Vector2(pos.x + 1, pos.y - 1)].transform.position.y, -3), Quaternion.identity);
+                    //currentMoveableLocationCircle[0] = Instantiate(moveableLocationCircle, new Vector3(locationOfTiles[new Vector2(pos.x + 2, pos.y - 2)].transform.position.x, locationOfTiles[new Vector2(pos.x + 2, pos.y - 2)].transform.position.y, -3), Quaternion.identity);
 
                 }
 
                 else if (hit.collider.gameObject.tag == "Pawn")
                 {
-                    
+                    lastClickedObject = hit.collider.gameObject;
+
+                    print("Pawn clicked");
                     currentMoveableLocationCircle[0] = Instantiate(moveableLocationCircle, new Vector3(pos.x, pos.y + -2f, -3), Quaternion.identity);
                 }
 

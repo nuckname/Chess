@@ -9,18 +9,14 @@ public class GirdManager : MonoBehaviour
     [SerializeField] private int yHeight;
     [SerializeField] private Transform cam;
 
+    [SerializeField] private GameObject debugSqaure;
+
     public Dictionary<Vector2, Tile> tiles;
 
-    // Start is called before the first frame update
-    void Start()
+    //need to put into awake or public Dictionary<Vector2, Tile> tiles is null.
+    private void Awake()
     {
         GenerateChessBoard();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     void GenerateChessBoard()
@@ -31,7 +27,6 @@ public class GirdManager : MonoBehaviour
         {
             for (int y = 0; y < yHeight; y++)
             {
-                print("spawned tile");
                 var spawnTile = Instantiate(tile, new Vector2(x, y),Quaternion.identity);
                 spawnTile.name = $"Tile: {x},{y}";
 
@@ -41,6 +36,9 @@ public class GirdManager : MonoBehaviour
                 tiles[new Vector2(x, y)] = spawnTile;
             }
         }
+
+        //this works but not in the other script.
+        //Instantiate(debugSqaure, tiles[new Vector2(1, 2)].transform.position, Quaternion.identity);
 
         cam.transform.position = new Vector3((float)yHeight / 2 - 0.5f, (float)xHeight / 2 - 0.5f, -10);
         //Debug.Log(locationOfTiles[new Vector2(2, 3)]);

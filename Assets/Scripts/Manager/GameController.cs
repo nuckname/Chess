@@ -19,44 +19,52 @@ public class GameController : MonoBehaviour
     public GameObject whiteQueen;
     public GameObject whiteKnight;
 
+    private GirdManager gridManager;
+    //might need to be private? if it interacts w/ iother script.
+    //I dont nee
+    public Dictionary<Vector2, Tile> locationOfTiles;
+
     void Start()
     {
-        GameObject[] backLineBlackPieces = { blackRook, blackKnight, blackBishop, blackQueen, blackKing };
-        GameObject[] backLineWhitePieces = { whiteRook, whiteKnight, whiteBishop, whiteKing, whiteQueen };
+        gridManager = FindObjectOfType<GirdManager>();
+        locationOfTiles = gridManager.tiles;
 
-        float blackXStartingPos = -4.83f;
-        float whiteXStartingPos = -4.79f;
+        //can loop backwards but over completed
+        GameObject[] backLineBlackPieces = { blackRook, blackKnight, blackBishop, blackQueen, blackKing, blackBishop, blackKnight, blackRook };
+        GameObject[] backLineWhitePieces = { whiteRook, whiteKnight, whiteBishop, whiteQueen, whiteKing, whiteBishop, whiteKnight, whiteRook };
 
-        SpawnPawns(blackXStartingPos, 3.06f, blackPawn);
-        SpawnBackLinePieces(blackXStartingPos, 4.31f, backLineBlackPieces);
+        Vector2 blackXPosFrontLine = new Vector2(0, 6);
+        Vector2 blackXPosBackLine = new Vector2(0, 7);
+
+        Vector2 whiteXPosFrontLine = new Vector2(0,1);
+        Vector2 whiteXPosBackLine = new Vector2(0,0);
+
+        SpawnPawns(blackXPosFrontLine, blackPawn);
+        SpawnBackLinePieces(blackXPosBackLine, backLineBlackPieces);
 
         
-        SpawnPawns(whiteXStartingPos, -3.12f, whitePawn);
-        SpawnBackLinePieces(whiteXStartingPos, -4.37f, backLineWhitePieces);
-        
+        SpawnPawns(whiteXPosFrontLine, whitePawn);
+        SpawnBackLinePieces(whiteXPosBackLine, backLineWhitePieces);
+
     }
 
-    private void SpawnPawns(float pawnXPos, float pawnYPos, GameObject pawnColor)
+    private void SpawnPawns(Vector2 pawnSpawnPos,  GameObject pawnColor)
     {
         for(int i = 0; i < 8; i++)
         {
-            Instantiate(pawnColor, new Vector3(pawnXPos, pawnYPos, -1), Quaternion.identity);
-            pawnXPos = pawnXPos - -1.25f;
+            Instantiate(pawnColor, new Vector3(locationOfTiles[pawnSpawnPos].transform.position.x, locationOfTiles[pawnSpawnPos].transform.position.y, -3), Quaternion.identity);
+            pawnSpawnPos.x += 1;
         }
     }
 
-    private void SpawnBackLinePieces(float pawnXPos, float pawnYPos, GameObject[] backlinePieces)
+    private void SpawnBackLinePieces(Vector2 backlineSpawnPos, GameObject[] backlinePieces)
     {
         for(int i = 0; i < backlinePieces.Length; i++)
         {
-            Instantiate(backlinePieces[i], new Vector3(pawnXPos, pawnYPos, -1), Quaternion.identity);
-            pawnXPos = pawnXPos - -1.25f;
+            Instantiate(backlinePieces[i], new Vector3(locationOfTiles[backlineSpawnPos].transform.position.x, locationOfTiles[backlineSpawnPos].transform.position.y, -3), Quaternion.identity);
+            
+            backlineSpawnPos.x += 1;
         }
 
-        for(int i = 2; i >= 0 && i >= -1; i--)
-        {
-            Instantiate(backlinePieces[i], new Vector3(pawnXPos, pawnYPos, -1), Quaternion.identity);
-            pawnXPos = pawnXPos - -1.25f;
-        }
     }
 }
