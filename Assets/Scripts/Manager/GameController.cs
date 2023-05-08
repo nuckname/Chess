@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    //Spawn in pieces
     public GameObject blackKing;
     public GameObject blackPawn;
     public GameObject blackBishop;
@@ -20,8 +19,7 @@ public class GameController : MonoBehaviour
     public GameObject whiteKnight;
 
     private GirdManager gridManager;
-    //might need to be private? if it interacts w/ iother script.
-    //I dont nee
+
     public Dictionary<Vector2, Tile> locationOfTiles;
 
     void Start()

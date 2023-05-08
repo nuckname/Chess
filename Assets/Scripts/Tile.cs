@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
+    //what
     [SerializeField] private Color baseColor, offsetColor;
     [SerializeField] private SpriteRenderer renderer;
 

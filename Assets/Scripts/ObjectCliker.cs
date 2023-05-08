@@ -22,10 +22,6 @@ public class ObjectCliker : MonoBehaviour
 
             if (hit.collider != null)
             {
-                Vector3 pos = hit.collider.transform.position;
-                lastClickedObject = hit.collider.gameObject;
-
-                //call methods from other script?
                 pieceMovement.hello(hit);
             }
         }

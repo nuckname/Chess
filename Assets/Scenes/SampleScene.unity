@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
   - component: {fileID: 519420034}
+  - component: {fileID: 519420035}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -237,6 +238,19 @@ MonoBehaviour:
   highlightSquare: {fileID: 8907847252334520898, guid: 69394d057d8b4604483e0e321d048d2c, type: 3}
   moveableLocationCircle: {fileID: 939143525464860019, guid: ffded954936d4394b9be6deb29fafacb, type: 3}
   takeLocationSquare: {fileID: 2954360253626550671, guid: 2ace13dbcfc79fd49b4f16ff20c4ca2f, type: 3}
+--- !u!114 &519420035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 867270283ac0227418c9b4c64dde25d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveableLocationCircle: {fileID: 939143525464860019, guid: ffded954936d4394b9be6deb29fafacb, type: 3}
 --- !u!1 &1960082232
 GameObject:
   m_ObjectHideFlags: 0

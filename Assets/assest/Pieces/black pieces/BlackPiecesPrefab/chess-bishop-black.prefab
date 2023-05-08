@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6915974239076608719}
   - component: {fileID: 6915974239076608718}
   - component: {fileID: -7629504628718769879}
+  - component: {fileID: -3273743986920196487}
   m_Layer: 0
   m_Name: chess-bishop-black
   m_TagString: Bishop
@@ -111,3 +112,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5, y: 5}
   m_EdgeRadius: 0
+--- !u!114 &-3273743986920196487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6915974239076608717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 867270283ac0227418c9b4c64dde25d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveableLocationCircle: {fileID: 939143525464860019, guid: ffded954936d4394b9be6deb29fafacb, type: 3}
