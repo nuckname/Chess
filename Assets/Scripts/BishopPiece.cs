@@ -5,7 +5,7 @@ using UnityEngine;
 public class BishopPiece : MonoBehaviour
 {
     public GameObject moveableLocationCircle;
-    //public GameObject lastClicked;
+
     //Would make code clearer however not necessary and doesnt work.
     /*
      *
@@ -24,7 +24,7 @@ public class BishopPiece : MonoBehaviour
     }*/
 
     private IsBlockingPiece isBlockingPiece;
-    private bool isBlocking;
+    private bool isBlocking = false;
 
 
     private void Awake()
@@ -51,7 +51,6 @@ public class BishopPiece : MonoBehaviour
     }
     public void OnPieceClick(Vector2 pos, Dictionary<Vector2, Tile> locationOfTiles)
     {
-        print("1");
         //CalculateBishipLine(pos, locationOfTiles, -1, -1);
         //CalculateBishipLine(pos, locationOfTiles, -1, -1);
         /*
@@ -68,23 +67,25 @@ public class BishopPiece : MonoBehaviour
 
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
-
+        print("hello");
+        
         if (hit.collider == null)
         {
             print("hit collider null");
         }
+        
 
         //lastClicked = hit.collider.gameObject;
-
+        
         //also need to get for a piece collision eg blocking its view.
+        
         int j = 1;
         while (locationOfTiles.ContainsKey(new Vector2(pos.x - j, pos.y - j)))
         {
-            GameObject currectGameObject;
+            Instantiate(moveableLocationCircle, new Vector3(locationOfTiles[new Vector2(pos.x - j, pos.y - j)].transform.position.x, locationOfTiles[new Vector2(pos.x - j, pos.y - j)].transform.position.y, -3), Quaternion.identity);
+            //isBlocking = isBlockingPiece.OnTriggerEnter2D()
 
-            currectGameObject = Instantiate(moveableLocationCircle, new Vector3(locationOfTiles[new Vector2(pos.x - j, pos.y - j)].transform.position.x, locationOfTiles[new Vector2(pos.x - j, pos.y - j)].transform.position.y, -3), Quaternion.identity);
 
-            //isBlocking = isBlockingPiece.OnCollisionEnter2D();
             j++;
         }
 
@@ -92,6 +93,7 @@ public class BishopPiece : MonoBehaviour
         while (locationOfTiles.ContainsKey(new Vector2(pos.x + j, pos.y - j)))
         {
             Instantiate(moveableLocationCircle, new Vector3(locationOfTiles[new Vector2(pos.x + j, pos.y - j)].transform.position.x, locationOfTiles[new Vector2(pos.x + j, pos.y - j)].transform.position.y, -3), Quaternion.identity);
+
             j++;
         }
 
@@ -99,6 +101,7 @@ public class BishopPiece : MonoBehaviour
         while (locationOfTiles.ContainsKey(new Vector2(pos.x + j, pos.y - j)))
         {
             Instantiate(moveableLocationCircle, new Vector3(locationOfTiles[new Vector2(pos.x - j, pos.y + j)].transform.position.x, locationOfTiles[new Vector2(pos.x - j, pos.y + j)].transform.position.y, -3), Quaternion.identity);
+
             j++;
         }
 
@@ -106,11 +109,9 @@ public class BishopPiece : MonoBehaviour
         while (locationOfTiles.ContainsKey(new Vector2(pos.x + j, pos.y - j)))
         {
             Instantiate(moveableLocationCircle, new Vector3(locationOfTiles[new Vector2(pos.x + j, pos.y + j)].transform.position.x, locationOfTiles[new Vector2(pos.x + j, pos.y + j)].transform.position.y, -3), Quaternion.identity);
+
             j++;
         }
-
-        print(pos.x + " " + pos.y);
-        
         
     }
 }

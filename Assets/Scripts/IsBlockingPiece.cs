@@ -5,21 +5,25 @@ using UnityEngine;
 public class IsBlockingPiece : MonoBehaviour
 {
     public float lineLength = 1.0f;
-    public LayerMask collisionLayer;
+    public bool isBlocking = true;
 
-    private void isBlockingPiece()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Shoot a line forward from the position of the chess piece
-        //this is for bishop, queen, rook,
-        Vector3 lineStart = transform.position;
-        Vector3 lineEnd = lineStart + transform.forward * lineLength;
-        RaycastHit hit;
-
-        // Check for collisions with other objects on the collisionLayer
-        if (Physics.Linecast(lineStart, lineEnd, out hit, collisionLayer))
+        switch (collision.tag)
         {
-            // Handle collision with other object
-            Debug.Log("Collision detected with " + hit.collider.gameObject.name);
+            case "Knight":
+                isBlocking = true;
+                break;
+            case "Pawn":
+                isBlocking = true;
+                break;
+            case "Bishop":
+                isBlocking = true;
+                break;
+            default:
+                // do nothing
+                break;
         }
     }
+
 }

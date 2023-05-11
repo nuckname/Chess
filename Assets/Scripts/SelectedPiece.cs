@@ -2,11 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PieceMovement : MonoBehaviour
+public class SelectedPiece : MonoBehaviour
 {
-    //Clicker*
-    //Bug when clicking on one piece -> not moving -> clicking on another piece the circles still remain.
-
     public GameObject highlightSquare;
     private GameObject currentHighlightSquare;
 
@@ -18,47 +15,44 @@ public class PieceMovement : MonoBehaviour
 
     public Dictionary<Vector2, Tile> locationOfTiles;
 
-    private ObjectCliker _lastClickedObject;
     private GameObject lastClicked;
 
-    private ObjectCliker _hit;
-    public RaycastHit2D hit;
+    private ObjectClicker _hit;
+    //public RaycastHit2D hit;
 
     private BishopPiece bishopPiece;
 
+    private IsBlockingPiece isBlockingPiece;
+    private bool isBlocking = false;
 
+    /*
     private void Awake()
     {
         bishopPiece = FindObjectOfType<BishopPiece>();
     }
-
+    */
     private void Start()
     {
+        //update?
+        
+        //isBlockingPiece = FindObjectOfType<IsBlockingPiece>();
+        //isBlocking = isBlockingPiece.isBlocking;
+
         gridManager = FindObjectOfType<GirdManager>();
         locationOfTiles = gridManager.tiles;
 
-        //I dont think i need this.
-        _lastClickedObject = FindObjectOfType<ObjectCliker>();
-        lastClicked = _lastClickedObject.lastClickedObject;
-
-        _hit = FindObjectOfType<ObjectCliker>();
-        hit = _hit.hit;
+        //_hit = FindObjectOfType<ObjectCliker>();
+        //hit = _hit.hit;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    //clean up
+    public void selectedPiece(RaycastHit2D hit)
     {
-        //if circle collides w/ piece -> destroy that piece and everyhing after //break; maybe new script for this as its going to work for every piece OOP :v).
-    }
-
-    private bool isBlockingSite()
-    {
-
-
-        return true;
-    }
-
-    public void hello(RaycastHit2D hit)
-    {
+        if (hit)
+        {
+            // handle null case here
+            print("error");
+        }
 
         Vector3 pos = hit.collider.transform.position;
 
@@ -75,6 +69,7 @@ public class PieceMovement : MonoBehaviour
 
         if (hit.collider.gameObject.tag == "CanMoveCircle")
         {
+            
             Destroy(currentHighlightSquare);
 
             lastClicked.transform.position = new Vector3(pos.x, pos.y, -3);
@@ -84,7 +79,7 @@ public class PieceMovement : MonoBehaviour
             for(int i = 0; i < allCanMoveCirclesOnBoard.Length; i++)
             {
                 Destroy(allCanMoveCirclesOnBoard[i]);
-                
+
             }
             print(lastClicked);
         }
@@ -103,9 +98,10 @@ public class PieceMovement : MonoBehaviour
         else if (hit.collider.gameObject.tag == "Bishop")
         {
             //also need to get for a piece collision eg blocking its view.
-
+            print(hit);
             lastClicked = hit.collider.gameObject;
 
+            bishopPiece = FindObjectOfType<BishopPiece>();
             bishopPiece.OnPieceClick(pos, locationOfTiles);
 
         }
@@ -116,8 +112,6 @@ public class PieceMovement : MonoBehaviour
             print("Pawn clicked");
             Instantiate(moveableLocationCircle, new Vector3(pos.x, pos.y + -2f, -3), Quaternion.identity);
         }
-
-        
     }
 }
 

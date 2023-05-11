@@ -2,16 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectCliker : MonoBehaviour
+public class ObjectClicker: MonoBehaviour
 {
-    public GameObject lastClickedObject;
     public RaycastHit2D hit;
-    //updates on sharing variable a good idea?
-    private PieceMovement pieceMovement;
+    private SelectedPiece pieceMovement;
     
     private void Awake()
     {
-        pieceMovement = FindObjectOfType<PieceMovement>();
+        pieceMovement = FindObjectOfType<SelectedPiece>();
     }
 
     private void Update()
@@ -22,7 +20,9 @@ public class ObjectCliker : MonoBehaviour
 
             if (hit.collider != null)
             {
-                pieceMovement.hello(hit);
+                print("this is a hit: " + hit);
+
+                pieceMovement.selectedPiece(hit);
             }
         }
     }
