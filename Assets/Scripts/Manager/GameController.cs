@@ -27,7 +27,6 @@ public class GameController : MonoBehaviour
         gridManager = FindObjectOfType<GirdManager>();
         locationOfTiles = gridManager.tiles;
 
-        //can loop backwards but over completed
         GameObject[] backLineBlackPieces = { blackRook, blackKnight, blackBishop, blackQueen, blackKing, blackBishop, blackKnight, blackRook };
         GameObject[] backLineWhitePieces = { whiteRook, whiteKnight, whiteBishop, whiteQueen, whiteKing, whiteBishop, whiteKnight, whiteRook };
 

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -5238068399418849616}
   m_Layer: 0
   m_Name: chess-bishop-white
-  m_TagString: Bishop
+  m_TagString: WhiteBishop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

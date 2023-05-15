@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7144871166543547197}
   m_Layer: 0
   m_Name: chess-king-white
-  m_TagString: King
+  m_TagString: WhiteKing
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

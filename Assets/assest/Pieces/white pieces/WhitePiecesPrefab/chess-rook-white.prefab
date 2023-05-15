@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2156976704463773166}
   m_Layer: 0
   m_Name: chess-rook-white
-  m_TagString: Rook
+  m_TagString: WhiteRook
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

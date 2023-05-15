@@ -6,10 +6,14 @@ public class ObjectClicker: MonoBehaviour
 {
     public RaycastHit2D hit;
     private SelectedPiece pieceMovement;
-    
+    private GetColorPosOnClick getColorPosOnClick;
+    public string colorOfPieceClicked;
+
     private void Awake()
     {
         pieceMovement = FindObjectOfType<SelectedPiece>();
+        //This might not work as we are getting the Object to early.
+        
     }
 
     private void Update()
@@ -20,9 +24,14 @@ public class ObjectClicker: MonoBehaviour
 
             if (hit.collider != null)
             {
-                print("this is a hit: " + hit);
+                getColorPosOnClick = FindObjectOfType<GetColorPosOnClick>();
+                //make string hello public?
+                string colorOfPieceClicked = getColorPosOnClick.GetObjectTag(hit);
+                print(colorOfPieceClicked);
 
                 pieceMovement.selectedPiece(hit);
+                
+                
             }
         }
     }

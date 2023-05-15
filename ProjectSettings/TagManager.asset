@@ -4,14 +4,20 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Bishop
-  - Knight
-  - Pawn
-  - King
-  - Queen
-  - Rook
-  - Undefined
   - CanMoveCircle
+  - WhiteBishop
+  - BlackBishop
+  - WhiteRook
+  - BlackRook
+  - WhitePawn
+  - BlackPawn
+  - WhiteKing
+  - BlackKing
+  - WhiteQueen
+  - BlackQueen
+  - WhiteKnight
+  - BlackKnight
+  - CanTakeCircle
   layers:
   - Default
   - TransparentFX

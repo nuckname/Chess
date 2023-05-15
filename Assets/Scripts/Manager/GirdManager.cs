@@ -36,12 +36,8 @@ public class GirdManager : MonoBehaviour
                 tiles[new Vector2(x, y)] = spawnTile;
             }
         }
-
-        //this works but not in the other script.
-        //Instantiate(debugSqaure, tiles[new Vector2(1, 2)].transform.position, Quaternion.identity);
-
         cam.transform.position = new Vector3((float)yHeight / 2 - 0.5f, (float)xHeight / 2 - 0.5f, -10);
-        //Debug.Log(locationOfTiles[new Vector2(2, 3)]);
+      
 
     }
 }
