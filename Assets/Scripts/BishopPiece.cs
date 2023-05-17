@@ -13,15 +13,17 @@ public class BishopPiece : MonoBehaviour
     private void Awake()
     {
         //this is also on the MoveableCircle prefab -> causing bug?
+        /*
         isBlockingPiece = FindObjectOfType<IsBlockingPiece>();
         isBlocking = isBlockingPiece.isBlocking;
         print(isBlocking);
+        */
     }
 
     //Method name doesnt make sense.
     public void OnPieceClick(Vector2 pos, Dictionary<Vector2, Tile> locationOfTiles)
     {
-
+        //note gives null error when rb pushed out piece by 0.01 -> not found in dictionary.
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
         
         if (hit.collider == null)
