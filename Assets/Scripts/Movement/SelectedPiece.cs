@@ -21,6 +21,10 @@ public class SelectedPiece : MonoBehaviour
     //public RaycastHit2D hit;
 
     private BishopPiece bishopPiece;
+    private KnightPiece knightPiece;
+    private RookPiece rookPiece;
+    private PawnPiece pawnPiece;
+
 
     private IsBlockingPiece isBlockingPiece;
     private bool isBlocking = false;
@@ -76,35 +80,37 @@ public class SelectedPiece : MonoBehaviour
             movePiece(pos);
         }
 
-        //If i line everything up it should be in the dictionary.
-        //then just pos.x + 2 and pos.y + 1 or something for an L shaped horse movement.
         else if (hit.collider.gameObject.tag.Contains("Knight"))
         {
             lastClicked = hit.collider.gameObject;
-
-            Instantiate(moveableLocationCircle, new Vector3(locationOfTiles[new Vector2(pos.x + 1, pos.y - 2)].transform.position.x, locationOfTiles[new Vector2(pos.x + 1, pos.y - 2)].transform.position.y, -3), Quaternion.identity);
-            Instantiate(moveableLocationCircle, new Vector3(locationOfTiles[new Vector2(pos.x - 1, pos.y - 2)].transform.position.x, locationOfTiles[new Vector2(pos.x - 1, pos.y - 2)].transform.position.y, -3), Quaternion.identity);
+            knightPiece = FindObjectOfType<KnightPiece>();
+            knightPiece.OnPieceClickKnight(pos, locationOfTiles);
 
         }
 
         else if (hit.collider.gameObject.tag.Contains("Bishop"))
         {
-            //also need to get for a piece collision eg blocking its view.
-
-            print("Bishoip clicked");
 
             lastClicked = hit.collider.gameObject;
-            print(lastClicked);
-
             bishopPiece = FindObjectOfType<BishopPiece>();
-            bishopPiece.OnPieceClick(pos, locationOfTiles);
+            bishopPiece.OnPieceClickBishop(pos, locationOfTiles);
 
         }
 
         else if (hit.collider.gameObject.tag.Contains("Pawn"))
         {
-            //might need two different pawns (first two can move forward).
+            lastClicked = hit.collider.gameObject;
+            pawnPiece = FindObjectOfType<PawnPiece>();
+            pawnPiece.OnPieceClickPawn(pos, locationOfTiles);
+
             Instantiate(moveableLocationCircle, new Vector3(pos.x, pos.y + -2f, -3), Quaternion.identity);
+        }
+
+        else if (hit.collider.gameObject.tag.Contains("Rook"))
+        {
+            lastClicked = hit.collider.gameObject;
+            rookPiece = FindObjectOfType<RookPiece>();
+            rookPiece.OnPieceClickRook(pos, locationOfTiles);
         }
     }
 }

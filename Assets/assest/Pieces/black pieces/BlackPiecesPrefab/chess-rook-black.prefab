@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2590525061667283285}
   - component: {fileID: -5770380351634861089}
   - component: {fileID: 9172180666439269390}
+  - component: {fileID: -1248317240830872786}
   m_Layer: 0
   m_Name: chess-rook-black
   m_TagString: BlackRook
@@ -133,3 +134,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-1248317240830872786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2590525061667283286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb643425f323ff349beaebcba0419e0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveableLocationCircle: {fileID: 939143525464860019, guid: ffded954936d4394b9be6deb29fafacb, type: 3}
+  moveableLocationCirclePrefab: {fileID: 0}
+  isBlock: 0

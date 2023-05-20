@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-public class GameController : MonoBehaviour
+public class SpawnPieces : MonoBehaviour
 {
     public GameObject blackKing;
     public GameObject blackPawn;
@@ -21,6 +22,24 @@ public class GameController : MonoBehaviour
     private GirdManager gridManager;
 
     public Dictionary<Vector2, Tile> locationOfTiles;
+
+    /*
+    private void Awake()
+    {
+        GameManager.OnGameStateChanged += GameManagerOnGameStateChanged;
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.OnGameStateChanged -= GameManagerOnGameStateChanged;
+    }
+
+
+    private void GameManagerOnGameStateChanged(GameState state)
+    {
+        throw new System.NotImplementedException();
+    }
+    */
 
     void Start()
     {

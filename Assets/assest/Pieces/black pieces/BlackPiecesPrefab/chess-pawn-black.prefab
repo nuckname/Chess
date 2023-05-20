@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7535006894895757814}
   - component: {fileID: -4823248280942078829}
   - component: {fileID: -6619528730667067657}
+  - component: {fileID: 7920796206252925544}
   m_Layer: 0
   m_Name: chess-pawn-black
   m_TagString: BlackPawn
@@ -133,3 +134,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &7920796206252925544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7535006894895757815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f65a9162d594c5f41955d2433d2e4a1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveableLocationCircle: {fileID: 939143525464860019, guid: ffded954936d4394b9be6deb29fafacb, type: 3}
+  moveableLocationCirclePrefab: {fileID: 0}

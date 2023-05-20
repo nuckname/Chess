@@ -12,8 +12,7 @@ public class ObjectClicker: MonoBehaviour
     private void Awake()
     {
         pieceMovement = FindObjectOfType<SelectedPiece>();
-        //This might not work as we are getting the Object to early.
-        
+        getColorPosOnClick = FindObjectOfType<GetColorPosOnClick>();
     }
 
     private void Update()
@@ -24,14 +23,15 @@ public class ObjectClicker: MonoBehaviour
 
             if (hit.collider != null)
             {
-                getColorPosOnClick = FindObjectOfType<GetColorPosOnClick>();
-                //make string hello public?
-                string colorOfPieceClicked = getColorPosOnClick.GetObjectTag(hit);
-                print(colorOfPieceClicked);
+                //all of this be in a gamemanager?
+                //
 
+
+                colorOfPieceClicked = getColorPosOnClick.GetObjectTag(hit);
+                print("color clicked: " + colorOfPieceClicked);
+                //should this be in a gameManager.
+                //then call canTakemethod.
                 pieceMovement.selectedPiece(hit);
-                
-                
             }
         }
     }
