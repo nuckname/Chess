@@ -23,26 +23,9 @@ public class SpawnPieces : MonoBehaviour
 
     public Dictionary<Vector2, Tile> locationOfTiles;
 
-    /*
-    private void Awake()
-    {
-        GameManager.OnGameStateChanged += GameManagerOnGameStateChanged;
-    }
-
-    private void OnDestroy()
-    {
-        GameManager.OnGameStateChanged -= GameManagerOnGameStateChanged;
-    }
-
-
-    private void GameManagerOnGameStateChanged(GameState state)
-    {
-        throw new System.NotImplementedException();
-    }
-    */
-
     void Start()
     {
+        //this isnt currently dynamic.
         gridManager = FindObjectOfType<GirdManager>();
         locationOfTiles = gridManager.tiles;
 

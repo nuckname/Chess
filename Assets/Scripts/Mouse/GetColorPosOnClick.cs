@@ -17,9 +17,10 @@ public class GetColorPosOnClick : MonoBehaviour
 
         else if (_GameObject.tag.Contains("White"))
         {
-            tag = "White";
+            tag = "white";
         }
 
+        //what about when the user clicks on a moveCircleSquare.
         else
         {
             tag = "error";

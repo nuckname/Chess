@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 7036807703756050205}
   - component: {fileID: 5853168138077074797}
   m_Layer: 0
-  m_Name: CanMoveCircle 1
-  m_TagString: CanMoveCircle
+  m_Name: PowerUpSqaure
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75,8 +75,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 0.08018869, b: 0, a: 1}
+  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
+  m_Color: {r: 1, g: 0, b: 0, a: 0.25490198}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -99,8 +99,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collider: []
-  isBlocking: 0
-  color: {r: 0, g: 0, b: 0, a: 0}
+  canTakeCirle: {fileID: 0}
+  isBlockingValue: 0
+  hasPieceBlocking: 0
 --- !u!58 &5853168138077074797
 CircleCollider2D:
   m_ObjectHideFlags: 0

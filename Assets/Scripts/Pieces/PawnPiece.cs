@@ -12,38 +12,73 @@ public class PawnPiece : MonoBehaviour
     //why are there two?
     public GameObject moveableLocationCirclePrefab;
 
-    bool doubleMoveRule = true;
+    private void pawnMovementBlack(bool allowedDoubleMove, Vector2 pos, Dictionary<Vector2, Tile> locationOfTiles)
+    {
+        int moveDistance = allowedDoubleMove ? 2 : 1; 
+        print("Move Distance = " + moveDistance);
+        for (int i = 1; i <= moveDistance; i++)
+        {
+            Vector2 targetPos = new Vector2(pos.x, pos.y - i);
+
+            print("targetPos.y: " + targetPos.y);
+
+            if (locationOfTiles.ContainsKey(targetPos)) 
+            {
+                Vector3 targetPosition = locationOfTiles[targetPos].transform.position;
+                Instantiate(moveableLocationCircle, new Vector3(targetPosition.x, targetPosition.y, -3), Quaternion.identity);
+            }
+        }
+    }
+
+    //different is pos.y + 1. fix later
+    private void pawnMovementWhite(bool allowedDoubleMove, Vector2 pos, Dictionary<Vector2, Tile> locationOfTiles)
+    {
+        int moveDistance = allowedDoubleMove ? 2 : 1;
+        print("Move Distance = " + moveDistance);
+        for (int i = 1; i <= moveDistance; i++)
+        {
+            Vector2 targetPos = new Vector2(pos.x, pos.y + i);
+
+            print("targetPos.y: " + targetPos.y);
+
+            if (locationOfTiles.ContainsKey(targetPos))
+            {
+                Vector3 targetPosition = locationOfTiles[targetPos].transform.position;
+                Instantiate(moveableLocationCircle, new Vector3(targetPosition.x, targetPosition.y, -3), Quaternion.identity);
+            }
+        }
+    }
 
     public void OnPieceClickPawn(Vector2 pos, Dictionary<Vector2, Tile> locationOfTiles)
     {
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
         objectClicker = FindObjectOfType<ObjectClicker>();
-        print("pawn" + objectClicker.colorOfPieceClicked);
-        
-        if(objectClicker.colorOfPieceClicked == "White")
-        {
 
-        }
-
-        else if (objectClicker.colorOfPieceClicked == "Black")
+        if(objectClicker.colorOfPieceClicked == "white")
         {
-
-        }
-        //have to check with tags
-        //use color pos script.
-        if (doubleMoveRule)
-        {
-            for(int i = 0; i <= 2; i++)
+            if (pos.y == 1)
             {
-                moveableLocationCirclePrefab = Instantiate(moveableLocationCircle, new Vector3(locationOfTiles[new Vector2(pos.x, pos.y - i)].transform.position.x, locationOfTiles[new Vector2(pos.x, pos.y - i)].transform.position.y, -3), Quaternion.identity);
-                doubleMoveRule = false;
+                pawnMovementWhite(true, pos, locationOfTiles);
+
+            }
+            else
+            {
+                pawnMovementWhite(false, pos, locationOfTiles);
             }
         }
-        else
-        {
-            moveableLocationCirclePrefab = Instantiate(moveableLocationCircle, new Vector3(locationOfTiles[new Vector2(pos.x, pos.y + 1)].transform.position.x, locationOfTiles[new Vector2(pos.x, pos.y + 1)].transform.position.y, -3), Quaternion.identity);
-        }
 
+        else if (objectClicker.colorOfPieceClicked == "black")
+        {
+            if(pos.y == 6)
+            {
+                pawnMovementBlack(true, pos, locationOfTiles);
+                
+            }
+            else
+            {
+                pawnMovementBlack(false, pos, locationOfTiles);
+            }
+        }
     }
 }

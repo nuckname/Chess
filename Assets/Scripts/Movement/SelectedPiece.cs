@@ -18,7 +18,6 @@ public class SelectedPiece : MonoBehaviour
     public GameObject lastClicked;
 
     private ObjectClicker _hit;
-    //public RaycastHit2D hit;
 
     private BishopPiece bishopPiece;
     private KnightPiece knightPiece;
@@ -29,7 +28,14 @@ public class SelectedPiece : MonoBehaviour
     private IsBlockingPiece isBlockingPiece;
     private bool isBlocking = false;
 
-    
+    private void ClearAllCanMoveCircles()
+    {
+        GameObject[] canMoveCircles = GameObject.FindGameObjectsWithTag("CanMoveCircle");
+        foreach(GameObject circle in canMoveCircles)
+        {
+            Destroy(circle);
+        }
+    }
     private void Start()
     {
         gridManager = FindObjectOfType<GirdManager>();
@@ -64,8 +70,14 @@ public class SelectedPiece : MonoBehaviour
 
         Vector3 pos = hit.collider.transform.position;
        
+        if(lastClicked != null)
+        {
+            ClearAllCanMoveCircles();
+        }
+
         if (currentHighlightSquare != null)
         {
+
             Destroy(currentHighlightSquare);
             currentHighlightSquare = null;
         }
@@ -82,6 +94,7 @@ public class SelectedPiece : MonoBehaviour
 
         else if (hit.collider.gameObject.tag.Contains("Knight"))
         {
+            //probs can put theses into methods later?
             lastClicked = hit.collider.gameObject;
             knightPiece = FindObjectOfType<KnightPiece>();
             knightPiece.OnPieceClickKnight(pos, locationOfTiles);
@@ -94,7 +107,7 @@ public class SelectedPiece : MonoBehaviour
             lastClicked = hit.collider.gameObject;
             bishopPiece = FindObjectOfType<BishopPiece>();
             bishopPiece.OnPieceClickBishop(pos, locationOfTiles);
-
+            
         }
 
         else if (hit.collider.gameObject.tag.Contains("Pawn"))
@@ -103,7 +116,6 @@ public class SelectedPiece : MonoBehaviour
             pawnPiece = FindObjectOfType<PawnPiece>();
             pawnPiece.OnPieceClickPawn(pos, locationOfTiles);
 
-            Instantiate(moveableLocationCircle, new Vector3(pos.x, pos.y + -2f, -3), Quaternion.identity);
         }
 
         else if (hit.collider.gameObject.tag.Contains("Rook"))

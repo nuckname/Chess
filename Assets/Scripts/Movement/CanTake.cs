@@ -9,6 +9,8 @@ public class CanTake : MonoBehaviour
     private ObjectClicker getColorPosOnClick;
     private bool PieceClickedColor;
 
+
+    //use gameObject can replace it with takeCircle;
     private void CanTakePiece()
     {
         //takes in hit array.
