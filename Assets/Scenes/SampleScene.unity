@@ -346,7 +346,7 @@ GameObject:
   - component: {fileID: 1480537023}
   - component: {fileID: 1480537022}
   m_Layer: 0
-  m_Name: cabTakeCircle
+  m_Name: canTakeCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -514,6 +514,7 @@ GameObject:
   - component: {fileID: 1960082234}
   - component: {fileID: 1960082233}
   - component: {fileID: 1960082235}
+  - component: {fileID: 1960082238}
   - component: {fileID: 1960082236}
   - component: {fileID: 1960082237}
   m_Layer: 0
@@ -604,6 +605,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DebugPowerUp: {fileID: 939143525464860019, guid: f57e63c8f50153f48aa95ea36776898b, type: 3}
+--- !u!114 &1960082238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1960082232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ac4f08534d26c54b8c723c53c925edb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enableRandomiseCircles: 0
 --- !u!1 &1997454556
 GameObject:
   m_ObjectHideFlags: 0

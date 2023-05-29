@@ -9,42 +9,27 @@ public class PawnPiece : MonoBehaviour
     private Collider2D[] _collider;
     private ObjectClicker objectClicker;
 
-    //why are there two?
-    public GameObject moveableLocationCirclePrefab;
-
-    private void pawnMovementBlack(bool allowedDoubleMove, Vector2 pos, Dictionary<Vector2, Tile> locationOfTiles)
-    {
-        int moveDistance = allowedDoubleMove ? 2 : 1; 
-        print("Move Distance = " + moveDistance);
-        for (int i = 1; i <= moveDistance; i++)
-        {
-            Vector2 targetPos = new Vector2(pos.x, pos.y - i);
-
-            print("targetPos.y: " + targetPos.y);
-
-            if (locationOfTiles.ContainsKey(targetPos)) 
-            {
-                Vector3 targetPosition = locationOfTiles[targetPos].transform.position;
-                Instantiate(moveableLocationCircle, new Vector3(targetPosition.x, targetPosition.y, -3), Quaternion.identity);
-            }
-        }
-    }
-
-    //different is pos.y + 1. fix later
-    private void pawnMovementWhite(bool allowedDoubleMove, Vector2 pos, Dictionary<Vector2, Tile> locationOfTiles)
+    private void pawnMovement(bool allowedDoubleMove, Vector2 pos, Dictionary<Vector2, Tile> locationOfTiles, int direction)
     {
         int moveDistance = allowedDoubleMove ? 2 : 1;
-        print("Move Distance = " + moveDistance);
         for (int i = 1; i <= moveDistance; i++)
         {
-            Vector2 targetPos = new Vector2(pos.x, pos.y + i);
-
-            print("targetPos.y: " + targetPos.y);
-
+            Vector2 targetPos = new Vector2(pos.x, pos.y + (direction * i));
+            
             if (locationOfTiles.ContainsKey(targetPos))
             {
+                //doesnt currently work.
                 Vector3 targetPosition = locationOfTiles[targetPos].transform.position;
                 Instantiate(moveableLocationCircle, new Vector3(targetPosition.x, targetPosition.y, -3), Quaternion.identity);
+                isBlockingPiece = FindObjectOfType<IsBlockingPiece>();
+
+                isBlockingPiece.isBlocking();
+
+                if (isBlockingPiece.hasPieceBlocking)
+                {
+                    print("break");
+                    break;
+                }
             }
         }
     }
@@ -59,12 +44,12 @@ public class PawnPiece : MonoBehaviour
         {
             if (pos.y == 1)
             {
-                pawnMovementWhite(true, pos, locationOfTiles);
+                pawnMovement(true, pos, locationOfTiles, 1);
 
             }
             else
             {
-                pawnMovementWhite(false, pos, locationOfTiles);
+                pawnMovement(false, pos, locationOfTiles, 1);
             }
         }
 
@@ -72,12 +57,12 @@ public class PawnPiece : MonoBehaviour
         {
             if(pos.y == 6)
             {
-                pawnMovementBlack(true, pos, locationOfTiles);
+                pawnMovement(true, pos, locationOfTiles, -1);
                 
             }
             else
             {
-                pawnMovementBlack(false, pos, locationOfTiles);
+                pawnMovement(false, pos, locationOfTiles, -1);
             }
         }
     }

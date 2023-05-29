@@ -18,52 +18,34 @@ public class RookPiece : MonoBehaviour
 
     public void OnPieceClickRook(Vector2 pos, Dictionary<Vector2, Tile> locationOfTiles)
     {
-        /*
-        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+        //this code is the same as bishop but with different array values -> OOP!!!!1!
 
-        if (hit.collider == null)
-        {
-            print("hit collider null");
-        }
-        */
 
-        Vector2[] movementOffsets = new Vector2[]
-        {
-            new Vector2(-1, 0),   // Left
-            new Vector2(1, 0),    // Right
-            new Vector2(0, 1),    // Up
-            new Vector2(0, -1)    // Down
-        };
+        int j = 1;
+        int[][] directions = new int[][] { new int[] { -1, 0 }, new int[] { 1, 0 }, new int[] { 0, 1 }, new int[] { 0, -1 } };
 
-        for (int i = 0; i < pos.x + 8; i++)
+        foreach (int[] direction in directions)
         {
-            try
+            int directionX = direction[0];
+            int directionY = direction[1];
+
+            while (locationOfTiles.ContainsKey(new Vector2(pos.x + (j * directionX), pos.y + (j * directionY))))
             {
-                foreach (var offset in movementOffsets)
+                moveableLocationCirclePrefab = Instantiate(moveableLocationCircle, new Vector3(locationOfTiles[new Vector2(pos.x + (j * directionX), pos.y + (j * directionY))].transform.position.x, locationOfTiles[new Vector2(pos.x + (j * directionX), pos.y + (j * directionY))].transform.position.y, -3), Quaternion.identity);
+                moveableLocationCircle.name = ($"rookCanMoveCircle {pos.x + (j * directionX)}, {pos.y + (j * directionY)}");
+
+                isBlockingPiece = FindObjectOfType<IsBlockingPiece>();
+                isBlockingPiece.isBlocking();
+
+                if (isBlockingPiece.hasPieceBlocking)
                 {
-                    Vector2 newPosition = new Vector2(pos.x + (i * offset.x), pos.y + (i * offset.y));
-
-                    if (locationOfTiles.ContainsKey(newPosition))
-                    {
-                        Vector3 targetPosition = locationOfTiles[newPosition].transform.position;
-                        moveableLocationCirclePrefab = Instantiate(moveableLocationCircle, new Vector3(targetPosition.x, targetPosition.y, -3), Quaternion.identity);
-
-                        isBlockingPiece = FindObjectOfType<IsBlockingPiece>();
-                        isBlockingPiece.isBlocking();
-
-                        
-                        if (isBlockingPiece.hasPieceBlocking)
-                        {
-                            print("break");
-                            break;
-                        }
-                    }
+                    print("break");
+                    break;
                 }
+
+                j++;
             }
-            catch (KeyNotFoundException)
-            {
-                // Handle KeyNotFoundException if necessary
-            }
+            j = 1;
         }
     }
 }

@@ -28,7 +28,7 @@ public class GetTile : MonoBehaviour
         {
             tile = gridManager.tiles[tilePosition];
             print(tile);
-
+           
             Instantiate(DebugPowerUp, new Vector3(tilePosition.x, tilePosition.y, -3), Quaternion.identity);
         }
         else 

@@ -8,8 +8,6 @@ public class KnightPiece : MonoBehaviour
     private IsBlockingPiece isBlockingPiece;
     private Collider2D[] _collider;
 
-    public GameObject moveableLocationCirclePrefab;
-
     //Method name doesnt make sense.
     public void OnPieceClickKnight(Vector2 pos, Dictionary<Vector2, Tile> locationOfTiles)
     {
@@ -32,7 +30,17 @@ public class KnightPiece : MonoBehaviour
                 if (locationOfTiles.ContainsKey(tilePosition))
                 {
                     Vector3 targetPosition = locationOfTiles[tilePosition].transform.position;
-                    moveableLocationCirclePrefab = Instantiate(moveableLocationCircle, new Vector3(targetPosition.x, targetPosition.y, -3), Quaternion.identity);
+                    Instantiate(moveableLocationCircle, new Vector3(targetPosition.x, targetPosition.y, -3), Quaternion.identity);
+
+                    /*
+                    isBlockingPiece = FindObjectOfType<IsBlockingPiece>();
+                    isBlockingPiece.isBlocking();
+
+                    if (isBlockingPiece.hasPieceBlocking)
+                    {
+                        print("break");
+                        break;
+                    }*/
                 }
             }
             catch (KeyNotFoundException)
