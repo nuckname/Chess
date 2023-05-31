@@ -13,8 +13,9 @@ public class IsBlockingPiece : MonoBehaviour
     private ObjectClicker objectClicker;
     //move to a different script the can take stuff
     private string[] blackPieces = { "chess-pawn-black(Clone) (UnityEngine.BoxCollider2D)" };
-    private string[] whitePieces = { "chess-pawn-white(Clone) (UnityEngine.BoxCollider2D)", "chess-bishop-white(Clone) (UnityEngine.BoxCollider2D)", "chess-knight-white(Clone) (UnityEngine.BoxCollider2D)", "chess-king-white(Clone) (UnityEngine.BoxCollider2D)", "chess-rook-white(Clone) (UnityEngine.BoxCollider2D)", "chess-queen-white(Clone) (UnityEngine.BoxCollider2D)" };
-
+    private string[] whitePieces = { "PowerUpSqaure(Clone) (UnityEngine.CircleCollider2D)", "chess-pawn-white(Clone) (UnityEngine.BoxCollider2D)", "chess-bishop-white(Clone) (UnityEngine.BoxCollider2D)", "chess-knight-white(Clone) (UnityEngine.BoxCollider2D)", "chess-king-white(Clone) (UnityEngine.BoxCollider2D)", "chess-rook-white(Clone) (UnityEngine.BoxCollider2D)", "chess-queen-white(Clone) (UnityEngine.BoxCollider2D)" };
+    
+    private string PowerUpSqaure = "PowerUpSqaure(Clone) (UnityEngine.CircleCollider2D)";
     //private bool hasAlreadyCollidered = false;
 
     private Vector3 posCanTakeCirle;
@@ -28,28 +29,28 @@ public class IsBlockingPiece : MonoBehaviour
     {
         collider = Physics2D.OverlapBoxAll(transform.position, new Vector2(1, 1), 1f);
 
+        //put this in a method.
         if (objectClicker.colorOfPieceClicked == "black")
         {
             if (collider.Length == 1)
             {
-                print("skip");
+                return;
             }
+            //[0] == The Circle Collider, [1] == powerup, [2] == a piece
+
             else
             {
-                //change the foreach loop when refactor into method.
                 foreach (string piece in whitePieces)
                 {
                     if(collider[1].ToString() == piece)
                     {
                         posCanTakeCirle = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
                         Instantiate(canTakeCirle, posCanTakeCirle, Quaternion.identity);
-                        //hasAlreadyCollidered = true;
                         Destroy(gameObject);
-                        break;
+                        return;
                     }
                     else
                     {
-                        //this is being called too many times however whenever i break it goes to this (outside of the loop)
                         hasPieceBlocking = true;
                         Destroy(gameObject);
                     }

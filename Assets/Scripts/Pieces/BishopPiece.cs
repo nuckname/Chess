@@ -29,7 +29,6 @@ public class BishopPiece : MonoBehaviour
 
                 if(isBlockingPiece.hasPieceBlocking)
                 {
-                    print("break");
                     break;
                 }
 

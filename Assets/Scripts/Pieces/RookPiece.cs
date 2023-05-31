@@ -39,7 +39,7 @@ public class RookPiece : MonoBehaviour
 
                 if (isBlockingPiece.hasPieceBlocking)
                 {
-                    print("break");
+                    //maybe make while = false instead of break.
                     break;
                 }
 

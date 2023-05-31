@@ -27,7 +27,6 @@ public class PawnPiece : MonoBehaviour
 
                 if (isBlockingPiece.hasPieceBlocking)
                 {
-                    print("break");
                     break;
                 }
             }
