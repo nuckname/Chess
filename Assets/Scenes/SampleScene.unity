@@ -265,6 +265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 519420031}
+  rotationSpeed: 1
 --- !u!1 &1040172104
 GameObject:
   m_ObjectHideFlags: 0
@@ -528,9 +529,9 @@ GameObject:
   - component: {fileID: 1960082234}
   - component: {fileID: 1960082233}
   - component: {fileID: 1960082235}
-  - component: {fileID: 1960082238}
   - component: {fileID: 1960082236}
   - component: {fileID: 1960082237}
+  - component: {fileID: 1960082238}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -628,10 +629,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1960082232}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ac4f08534d26c54b8c723c53c925edb, type: 3}
+  m_Script: {fileID: 11500000, guid: 99eea0271e04e9d4e89db8c757e9f888, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableRandomiseCircles: 0
 --- !u!1 &1997454556
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,9 +14,8 @@ public class GetTile : MonoBehaviour
     }
     //public GridMan
     //Gets random tile and passes it
-    void Start()
+    public void GeneratePowerUpTile()
     {
-
         System.Random randomTilePos = new System.Random();
         //just for debugging
         int RandomrandomTilePosX = randomTilePos.Next(0, gridManager.xHeight);

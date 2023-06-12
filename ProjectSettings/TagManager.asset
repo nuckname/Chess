@@ -18,6 +18,8 @@ TagManager:
   - WhiteKnight
   - BlackKnight
   - CanTakeCircle
+  - PowerUpSquare
+  - CanPawnTakeCircle
   layers:
   - Default
   - TransparentFX
@@ -25,7 +27,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - NoCollision
   - 
   - 
   - 

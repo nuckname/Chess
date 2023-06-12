@@ -23,9 +23,8 @@ public class SpawnPieces : MonoBehaviour
 
     public Dictionary<Vector2, Tile> locationOfTiles;
 
-    void Start()
+    public void GeneratePieces()
     {
-        //this isnt currently dynamic.
         gridManager = FindObjectOfType<GirdManager>();
         locationOfTiles = gridManager.tiles;
 
@@ -44,7 +43,6 @@ public class SpawnPieces : MonoBehaviour
         
         SpawnPawns(whiteXPosFrontLine, whitePawn);
         SpawnBackLinePieces(whiteXPosBackLine, backLineWhitePieces);
-
     }
 
     private void SpawnPawns(Vector2 pawnSpawnPos,  GameObject pawnColor)

@@ -28,7 +28,7 @@ public class ObjectClicker: MonoBehaviour
                 print("color clicked: " + colorOfPieceClicked);
                 //should this be in a gameManager.
                 //then call canTakemethod.
-                pieceMovement.selectedPiece(hit);
+                pieceMovement.selectedPiece(hit);                                                                                                                                                                                                                                                                                           
             }
         }
     }

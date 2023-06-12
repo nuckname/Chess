@@ -24,42 +24,19 @@ public class SelectedPiece : MonoBehaviour
     private RookPiece rookPiece;
     private PawnPiece pawnPiece;
 
+    private ClearPreviousSelection clearPreviousSelection;
 
-    private IsBlockingPiece isBlockingPiece;
-    private bool isBlocking = false;
-
-    private void ClearAllCanMoveCircles()
+    private void Awake()
     {
-        GameObject[] canMoveCircles = GameObject.FindGameObjectsWithTag("CanMoveCircle");
-        foreach(GameObject circle in canMoveCircles)
-        {
-            Destroy(circle);
-        }
+        clearPreviousSelection = FindObjectOfType<ClearPreviousSelection>();
     }
     private void Start()
     {
         gridManager = FindObjectOfType<GirdManager>();
         locationOfTiles = gridManager.tiles;
-
+        
     }
 
-    private void movePiece(Vector2 pos)
-    {
-        Destroy(currentHighlightSquare);
-
-        lastClicked.transform.position = new Vector3(pos.x, pos.y, -3);
-
-        GameObject[] allCanMoveCirclesOnBoard = GameObject.FindGameObjectsWithTag("CanMoveCircle");
-
-        for (int i = 0; i < allCanMoveCirclesOnBoard.Length; i++)
-        {
-            Destroy(allCanMoveCirclesOnBoard[i]);
-
-        }
-        print(lastClicked);
-    }
-
-    //clean up
     public void selectedPiece(RaycastHit2D hit)
     {
         if (hit)
@@ -69,18 +46,13 @@ public class SelectedPiece : MonoBehaviour
         }
 
         Vector3 pos = hit.collider.transform.position;
-       
-        if(lastClicked != null)
-        {
-            ClearAllCanMoveCircles();
-        }
 
-        if (currentHighlightSquare != null)
-        {
+        //call ClearPreviousSelection script
 
-            Destroy(currentHighlightSquare);
-            currentHighlightSquare = null;
-        }
+        
+        clearPreviousSelection.ClearPreviousClick(lastClicked, currentHighlightSquare);
+
+        //ClearPreviousSelection(pos);
 
         if (hit.collider.gameObject)
         {
@@ -89,41 +61,92 @@ public class SelectedPiece : MonoBehaviour
 
         if (hit.collider.gameObject.tag == "CanMoveCircle")
         {
-            movePiece(pos);
+            MovePiece(pos);
+        }
+
+        if (hit.collider.gameObject.tag == "CanTakeCircle")
+        {
+            MovePiece(pos);
         }
 
         else if (hit.collider.gameObject.tag.Contains("Knight"))
         {
-            //probs can put theses into methods later?
-            lastClicked = hit.collider.gameObject;
-            knightPiece = FindObjectOfType<KnightPiece>();
-            knightPiece.OnPieceClickKnight(pos, locationOfTiles);
-
+            HandleKnightPiece(pos, hit);
         }
 
         else if (hit.collider.gameObject.tag.Contains("Bishop"))
         {
-
-            lastClicked = hit.collider.gameObject;
-            bishopPiece = FindObjectOfType<BishopPiece>();
-            bishopPiece.OnPieceClickBishop(pos, locationOfTiles);
-            
+            HandleBishopPiece(pos, hit);
         }
 
         else if (hit.collider.gameObject.tag.Contains("Pawn"))
         {
-            lastClicked = hit.collider.gameObject;
-            pawnPiece = FindObjectOfType<PawnPiece>();
-            pawnPiece.OnPieceClickPawn(pos, locationOfTiles);
-
+            HandlePawnPiece(pos, hit);
         }
 
         else if (hit.collider.gameObject.tag.Contains("Rook"))
         {
-            lastClicked = hit.collider.gameObject;
-            rookPiece = FindObjectOfType<RookPiece>();
-            rookPiece.OnPieceClickRook(pos, locationOfTiles);
+            HandleRookPiece(pos, hit);
         }
+    }
+    private void MovePiece(Vector2 pos)
+    {
+        //currentHighlightSquare = Instantiate(highlightSquare, new Vector3(position.x, position.y, -3), Quaternion.identity);
+        lastClicked.transform.position = new Vector3(pos.x, pos.y, -3);
+    }
+
+    //moved to ClearPreviousSelection
+    private void ClearPreviousSelection()
+    {
+        if (lastClicked != null)
+        {
+            ClearAllCanMoveCircles();
+        }
+
+        if (currentHighlightSquare != null)
+        {
+            Destroy(currentHighlightSquare);
+            //Destroy(highlightSquare);
+
+            currentHighlightSquare = null;
+        }
+    }
+
+    private void ClearAllCanMoveCircles()
+    {
+        GameObject[] canMoveCircles = GameObject.FindGameObjectsWithTag("CanMoveCircle");
+        foreach (GameObject circle in canMoveCircles)
+        {
+            Destroy(circle);
+        }
+    }
+    
+    private void HandleKnightPiece(Vector3 position, RaycastHit2D hit)
+    {
+        lastClicked = hit.collider.gameObject;
+        knightPiece = FindObjectOfType<KnightPiece>();
+        knightPiece.OnPieceClickKnight(position, locationOfTiles);
+    }
+
+    private void HandleBishopPiece(Vector3 position, RaycastHit2D hit)
+    {
+        lastClicked = hit.collider.gameObject;
+        bishopPiece = FindObjectOfType<BishopPiece>();
+        bishopPiece.OnPieceClickBishop(position, locationOfTiles);
+    }
+
+    private void HandlePawnPiece(Vector3 position, RaycastHit2D hit)
+    {
+        lastClicked = hit.collider.gameObject;
+        pawnPiece = FindObjectOfType<PawnPiece>();
+        pawnPiece.OnPieceClickPawn(position, locationOfTiles);
+    }
+
+    private void HandleRookPiece(Vector3 position, RaycastHit2D hit)
+    {
+        lastClicked = hit.collider.gameObject;
+        rookPiece = FindObjectOfType<RookPiece>();
+        rookPiece.OnPieceClickRook(position, locationOfTiles);
     }
 }
 

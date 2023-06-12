@@ -18,27 +18,26 @@ public class CameraPowerUps : MonoBehaviour
        
     }
 
-    public class CameraController : MonoBehaviour
+
+    // Adjust this variable to control the camera's rotation speed
+    public float rotationSpeed = 1.0f;
+    /*
+    private void Update()
     {
-        // Adjust this variable to control the camera's rotation speed
-        public float rotationSpeed = 1.0f;
-        /*
-        private void Update()
-        {
-            // Get the current rotation of the camera
-            Quaternion currentRotation = transform.rotation;
+        // Get the current rotation of the camera
+        Quaternion currentRotation = transform.rotation;
 
-            // Calculate the desired rotation increment based on the rotation speed
-            float rotationIncrement = rotationSpeed * Time.deltaTime;
+        // Calculate the desired rotation increment based on the rotation speed
+        float rotationIncrement = rotationSpeed * Time.deltaTime;
 
-            // Calculate the new rotation around the Z-axis
-            Quaternion desiredRotation = Quaternion.Euler(0f, 0f, rotationIncrement) * currentRotation;
+        // Calculate the new rotation around the Z-axis
+        Quaternion desiredRotation = Quaternion.Euler(0f, 0f, rotationIncrement) * currentRotation;
 
-            // Apply the new rotation to the camera
-            transform.rotation = desiredRotation;
-        }
-        */
+        // Apply the new rotation to the camera
+        transform.rotation = desiredRotation;
     }
+    */
+    
 
 
     private void CameraZoomOut()

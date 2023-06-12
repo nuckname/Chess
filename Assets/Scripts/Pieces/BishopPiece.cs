@@ -5,7 +5,7 @@ using UnityEngine;
 public class BishopPiece : MonoBehaviour
 {
     public GameObject moveableLocationCircle;
-    private IsBlockingPiece isBlockingPiece;
+    private SpawningMoveableCircles spawningMoveableCircles;
 
     public GameObject moveableLocationCirclePrefab;
 
@@ -24,10 +24,10 @@ public class BishopPiece : MonoBehaviour
                 moveableLocationCirclePrefab = Instantiate(moveableLocationCircle, new Vector3(locationOfTiles[new Vector2(pos.x + (j * directionX), pos.y + (j * directionY))].transform.position.x, locationOfTiles[new Vector2(pos.x + (j * directionX), pos.y + (j * directionY))].transform.position.y, -3), Quaternion.identity);
                 moveableLocationCircle.name = ($"BishopCanMoveCircle {pos.x + (j * directionX)}, {pos.y + (j * directionY)}");
 
-                isBlockingPiece = FindObjectOfType<IsBlockingPiece>();
-                isBlockingPiece.isBlocking();
+                spawningMoveableCircles = FindObjectOfType<SpawningMoveableCircles>();
+                spawningMoveableCircles.isBlocking();
 
-                if(isBlockingPiece.hasPieceBlocking)
+                if(spawningMoveableCircles.hasPieceBlocking)
                 {
                     break;
                 }

@@ -1,28 +1,28 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
 
 public class GameManager : MonoBehaviour
 {
+    private GirdManager girdManager;
+    private GetTile getTile;
+    private SpawnPieces spawnPieces;
+    //private GirdManager girdManager;
+
+    
     private void Awake()
     {
-        //spawns board
-        //spawns pieces
+        girdManager = FindObjectOfType<GirdManager>();
+        getTile = FindObjectOfType<GetTile>();
+        spawnPieces = FindObjectOfType<SpawnPieces>();
+
+        girdManager.GenerateChessBoard();
     }
-
-
-    private void ClickMouse()
+    private void Start()
     {
-        //Object Clicker
-        //gets color of piece clicked
-        //selects piece clicked
-       
+        spawnPieces.GeneratePieces();
+        getTile.GeneratePowerUpTile();
     }
-
-    public void PieceClicked()
-    {
-
-    }
-        
+    
 }

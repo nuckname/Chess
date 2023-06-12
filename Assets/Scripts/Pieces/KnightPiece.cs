@@ -5,7 +5,7 @@ using UnityEngine;
 public class KnightPiece : MonoBehaviour
 {
     public GameObject moveableLocationCircle;
-    private IsBlockingPiece isBlockingPiece;
+    private SpawningMoveableCircles spawningMoveableCircles;
     private Collider2D[] _collider;
 
     //Method name doesnt make sense.
@@ -32,11 +32,11 @@ public class KnightPiece : MonoBehaviour
                     Vector3 targetPosition = locationOfTiles[tilePosition].transform.position;
                     Instantiate(moveableLocationCircle, new Vector3(targetPosition.x, targetPosition.y, -3), Quaternion.identity);
 
-                    
-                    isBlockingPiece = FindObjectOfType<IsBlockingPiece>();
-                    isBlockingPiece.isBlocking();
 
-                    if (isBlockingPiece.hasPieceBlocking)
+                    spawningMoveableCircles = FindObjectOfType<SpawningMoveableCircles>();
+                    spawningMoveableCircles.isBlocking();
+
+                    if (spawningMoveableCircles.hasPieceBlocking)
                     {
                         Destroy(moveableLocationCircle);
                     }
@@ -47,8 +47,5 @@ public class KnightPiece : MonoBehaviour
                 print("error");
             }
         }
-
-
-
     }
 }

@@ -13,14 +13,7 @@ public class GirdManager : MonoBehaviour
 
     public Dictionary<Vector2, Tile> tiles;
 
-    //need to put into awake or public Dictionary<Vector2, Tile> tiles is null.
-    private void Awake()
-    {
-        GenerateChessBoard();
-    }
-
-
-    void GenerateChessBoard()
+    public void GenerateChessBoard()
     {
         tiles = new Dictionary<Vector2, Tile>();
 
@@ -47,34 +40,4 @@ public class GirdManager : MonoBehaviour
         float offsetY = (float)xHeight * tile.transform.localScale.y / 2 - 0.5f;
         cam.transform.position = new Vector3(offsetX, offsetY, -10);
     }
-
-
-
-
-    /*
-void GenerateChessBoard()
-{
-    tiles = new Dictionary<Vector2, Tile>();
-
-    for (int x = 0; x < xHeight; x++)
-    {
-        for (int y = 0; y < yHeight; y++)
-        {
-            var spawnTile = Instantiate(tile, new Vector2(x, y),Quaternion.identity);
-            spawnTile.name = $"Tile: {x},{y}";
-
-            var isOffset = (x % 2 == 0 && y % 2 != 0) || (x % 2 != 0 && y % 2 == 0);
-            spawnTile.Init(isOffset);
-
-            tiles[new Vector2(x, y)] = spawnTile;
-        }
-    }
-    cam.transform.position = new Vector3((float)yHeight / 2 - 0.5f, (float)xHeight / 2 - 0.5f, -10);
-
-
-}
-*/
-
-
-
 }

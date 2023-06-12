@@ -147,4 +147,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveableLocationCircle: {fileID: 939143525464860019, guid: ffded954936d4394b9be6deb29fafacb, type: 3}
-  moveableLocationCirclePrefab: {fileID: 0}
