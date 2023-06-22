@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: -4823248280942078829}
   - component: {fileID: -6619528730667067657}
   - component: {fileID: 7920796206252925544}
-  - component: {fileID: 729053960386036949}
-  m_Layer: 0
+  - component: {fileID: -6323767168253604390}
+  m_Layer: 3
   m_Name: chess-pawn-black
   m_TagString: BlackPawn
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7535006894895757815}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.011268, y: 1.1690688, z: -1.0645621}
+  m_LocalPosition: {x: -2.082, y: 1.232, z: -1.0645621}
   m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -101,7 +101,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 1
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.029242516, y: 0.0114851}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -112,7 +112,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.5, y: 3.5}
+  m_Size: {x: 3, y: 3}
   m_EdgeRadius: 0
 --- !u!50 &-6619528730667067657
 Rigidbody2D:
@@ -147,8 +147,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f65a9162d594c5f41955d2433d2e4a1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveableLocationCircle: {fileID: 939143525464860019, guid: ffded954936d4394b9be6deb29fafacb, type: 3}
---- !u!114 &729053960386036949
+  moveableLocationCircle: {fileID: 939143525464860019, guid: 8908943ff5fcbc446a816483893cf56c, type: 3}
+--- !u!114 &-6323767168253604390
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -160,6 +160,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd340452854873e448ddc1da42ec9b60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collider: []
-  canTakeCirle: {fileID: 2954360253626550671, guid: 2ace13dbcfc79fd49b4f16ff20c4ca2f, type: 3}
   isPawnAttacking: {fileID: 939143525464860019, guid: 92ff6411375732f4bb56f18bc9f07556, type: 3}

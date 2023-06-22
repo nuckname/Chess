@@ -4,64 +4,54 @@ using UnityEngine;
 
 public class PawnPiece : MonoBehaviour
 {
-    //using locationOfTiles is back as its has all the squares in it.
+    //global variable?
+    //using locationOfTiles is bad as its has all the squares in it.
 
     public GameObject moveableLocationCircle;
     private SpawningMoveableCircles spawningMoveableCircles;
     private ObjectClicker objectClicker;
+    private PawnAttackingGameObject pawnAttackingGameObject;
 
     private PawnAttacking pawnAttacking;
 
-    private void pawnMovement(bool allowedDoubleMove, Vector2 pos, Dictionary<Vector2, Tile> locationOfTiles, int direction)
+    private void pawnMovement(bool allowedDoubleMove, Vector2 pos, int direction)
     {
-        
         int moveDistance = allowedDoubleMove ? 2 : 1;
         for (int i = 1; i <= moveDistance; i++)
         {
             Vector2 targetPos = new Vector2(pos.x, pos.y + (direction * i));
-            
-            if (locationOfTiles.ContainsKey(targetPos))
+
+            //currently no out of bounds check.
+            Instantiate(moveableLocationCircle, new Vector3(targetPos.x, targetPos.y, -3), Quaternion.identity);
+            spawningMoveableCircles = FindObjectOfType<SpawningMoveableCircles>();
+
+            spawningMoveableCircles.isBlocking();
+
+            if (spawningMoveableCircles.hasPieceBlocking)
             {
-                //doesnt currently work.
-                Vector3 targetPosition = locationOfTiles[targetPos].transform.position;
-                Instantiate(moveableLocationCircle, new Vector3(targetPosition.x, targetPosition.y, -3), Quaternion.identity);
-                spawningMoveableCircles = FindObjectOfType<SpawningMoveableCircles>();
-
-
-
-                spawningMoveableCircles.isBlocking();
-
-                if (spawningMoveableCircles.hasPieceBlocking)
-                {
-                    break;
-                }
-
-                //testing pawnAttacking
-
-                //Instantiate(moveableLocationCircle, new Vector3(targetPosition.x - 1, targetPosition.y - 1, -3), Quaternion.identity);
-                //Instantiate(moveableLocationCircle, new Vector3(targetPosition.x - 1, targetPosition.y - 1, -3), Quaternion.identity);
+                break;
             }
         }
     }
 
-    public void OnPieceClickPawn(Vector2 pos, Dictionary<Vector2, Tile> locationOfTiles)
+    public void OnPieceClickPawn(Vector2 pos)
     {
         objectClicker = FindObjectOfType<ObjectClicker>();
         pawnAttacking = FindObjectOfType<PawnAttacking>();
-
-        ClearAllPawnTakeCircle();
+        pawnAttackingGameObject = FindObjectOfType<PawnAttackingGameObject>();
 
         if (objectClicker.colorOfPieceClicked == "white")
         {
             if (pos.y == 1)
             {
-                pawnMovement(true, pos, locationOfTiles, 1);
-                pawnAttacking.pawnAttack(pos, locationOfTiles);
+                pawnMovement(true, pos, 1);
+                pawnAttacking.GeneratePawnAttackingCircles(pos, 1, -1, -1 ,-1);
+                
             }
             else
             {
-                pawnMovement(false, pos, locationOfTiles, 1);
-                pawnAttacking.pawnAttack(pos, locationOfTiles);
+                pawnMovement(false, pos, 1);
+                pawnAttacking.GeneratePawnAttackingCircles(pos, 1, -1, -1, -1);
             }
         }
 
@@ -69,26 +59,15 @@ public class PawnPiece : MonoBehaviour
         {
             if(pos.y == 6)
             {
-                pawnMovement(true, pos, locationOfTiles, -1);
-                pawnAttacking.pawnAttack(pos, locationOfTiles);
+                pawnMovement(true, pos, -1);
+                pawnAttacking.GeneratePawnAttackingCircles(pos, - 1, 1, 1, 1);
+
             }
             else
             {
-                pawnMovement(false, pos, locationOfTiles, -1);
-                pawnAttacking.pawnAttack(pos, locationOfTiles);
-            }
-        }
-    }
+                pawnMovement(false, pos, -1);
+                pawnAttacking.GeneratePawnAttackingCircles(pos, -1, 1, 1, 1);
 
-    private void ClearAllPawnTakeCircle()
-    {
-        GameObject[] canPawnTakeCircle = GameObject.FindGameObjectsWithTag("CanPawnTakeCircle");
-
-        if(canPawnTakeCircle != null)
-        {
-            foreach (GameObject gameObject in canPawnTakeCircle)
-            {
-                //Destroy(gameObject);
             }
         }
     }

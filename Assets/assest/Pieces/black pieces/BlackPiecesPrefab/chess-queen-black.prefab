@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7685556921196313557}
   - component: {fileID: 705258562990552236}
   - component: {fileID: -3623276736649518724}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: chess-queen-black
   m_TagString: BlackQueen
   m_Icon: {fileID: 0}

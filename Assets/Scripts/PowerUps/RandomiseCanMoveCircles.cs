@@ -13,15 +13,6 @@ public class RandomiseCanMoveCircles : MonoBehaviour
     {
         gridManager = FindObjectOfType<GirdManager>();
     }
-    //publ
-
-    void Start()
-    {
-
-        //disable script and enable on power Manager?
-        //currently not working.
-        //UsePowerUpRandomiseMoves();
-    }
 
     private void UsePowerUpRandomiseMoves()
     {
@@ -34,17 +25,5 @@ public class RandomiseCanMoveCircles : MonoBehaviour
 
         canMoveCircleInstances[rndRange].transform.position = new Vector3(RandomrandomTilePosX, RandomrandomTilePosY, -3);
 
-
-        
-
-
-        //gameObject.transform.position = new Vector3(1, 1, -3);
-
-          /* 
-        print("swap");
-        int temp = RandomrandomTilePosY;
-        RandomrandomTilePosY = RandomrandomTilePosX;
-        RandomrandomTilePosX = temp;
-         */
     }
 }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -6659853805216737454}
   - component: {fileID: -7707064444131743938}
   - component: {fileID: -3452691871818019667}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: chess-knight-black
   m_TagString: BlackKnight
   m_Icon: {fileID: 0}
@@ -147,4 +147,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveableLocationCircle: {fileID: 939143525464860019, guid: ffded954936d4394b9be6deb29fafacb, type: 3}
-  moveableLocationCirclePrefab: {fileID: 0}

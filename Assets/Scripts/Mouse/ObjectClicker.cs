@@ -23,11 +23,9 @@ public class ObjectClicker: MonoBehaviour
 
             if (hit.collider != null)
             {
-                //all of this be in a gamemanager?
                 colorOfPieceClicked = getColorPosOnClick.GetObjectTag(hit);
                 print("color clicked: " + colorOfPieceClicked);
-                //should this be in a gameManager.
-                //then call canTakemethod.
+
                 pieceMovement.selectedPiece(hit);                                                                                                                                                                                                                                                                                           
             }
         }

@@ -4,19 +4,21 @@ using UnityEngine;
 
 public class RookPiece : MonoBehaviour
 {
+    [SerializeField]
+    private bool hasMoved;
+
     public GameObject moveableLocationCircle;
     private SpawningMoveableCircles spawningMoveableCircles;
     private Collider2D[] _collider;
 
     public GameObject moveableLocationCirclePrefab;
-
-    //private bool isBlocking = false;
+    
     public bool isBlock;
 
     public void OnPieceClickRook(Vector2 pos, Dictionary<Vector2, Tile> locationOfTiles)
     {
         //this code is the same as bishop but with different array values -> OOP!!!!1!
-        
+
         int j = 1;
         int[][] directions = new int[][] { new int[] { -1, 0 }, new int[] { 1, 0 }, new int[] { 0, 1 }, new int[] { 0, -1 } };
 
@@ -35,7 +37,6 @@ public class RookPiece : MonoBehaviour
 
                 if (spawningMoveableCircles.hasPieceBlocking)
                 {
-                    //maybe make while = false instead of break.
                     break;
                 }
 
@@ -44,4 +45,6 @@ public class RookPiece : MonoBehaviour
             j = 1;
         }
     }
+
+
 }

@@ -8,24 +8,26 @@ public class ClearPreviousSelection : MonoBehaviour
     {
         if (lastClicked != null)
         {
-            ClearAllCanMoveCircles();
+            ClearObjectsWithTag("CanMoveCircle");
+            ClearObjectsWithTag("CanPawnTakeCircle");
+            ClearObjectsWithTag("CanTakeCircle");
         }
 
         if (currentHighlightSquare != null)
         {
             Destroy(currentHighlightSquare);
-            //Destroy(highlightSquare);
 
             currentHighlightSquare = null;
         }
     }
 
-    private void ClearAllCanMoveCircles()
+    //This has a performance issue as it has to search the whole hierarchy. 
+    private void ClearObjectsWithTag(string tag)
     {
-        GameObject[] canMoveCircles = GameObject.FindGameObjectsWithTag("CanMoveCircle");
-        foreach (GameObject circle in canMoveCircles)
+        GameObject[] objectsWithTag = GameObject.FindGameObjectsWithTag(tag);
+        foreach (GameObject objects in objectsWithTag)
         {
-            Destroy(circle);
+            Destroy(objects);
         }
     }
 }

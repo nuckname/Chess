@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 939143525464860021}
   - component: {fileID: 939143525464860020}
   - component: {fileID: 5853168138077074797}
-  - component: {fileID: -57368340716726082}
+  - component: {fileID: 2107229530568903413}
   m_Layer: 0
   m_Name: isPawnAttacking
   m_TagString: CanPawnTakeCircle
@@ -102,7 +102,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &-57368340716726082
+--- !u!114 &2107229530568903413
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -111,9 +111,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 939143525464860019}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd340452854873e448ddc1da42ec9b60, type: 3}
+  m_Script: {fileID: 11500000, guid: 92ffb4571293f124490fb1240ab38246, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   collider: []
   canTakeCirle: {fileID: 2954360253626550671, guid: 2ace13dbcfc79fd49b4f16ff20c4ca2f, type: 3}
-  isPawnAttacking: {fileID: 939143525464860019}

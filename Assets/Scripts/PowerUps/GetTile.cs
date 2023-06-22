@@ -11,7 +11,7 @@ public class GetTile : MonoBehaviour
     private void Awake()
     {
         gridManager = FindObjectOfType<GirdManager>();
-    }
+    }   
     //public GridMan
     //Gets random tile and passes it
     public void GeneratePowerUpTile()

@@ -8,7 +8,8 @@ public class KnightPiece : MonoBehaviour
     private SpawningMoveableCircles spawningMoveableCircles;
     private Collider2D[] _collider;
 
-    //Method name doesnt make sense.
+    private GameObject tempMoveableCircle;
+
     public void OnPieceClickKnight(Vector2 pos, Dictionary<Vector2, Tile> locationOfTiles)
     {
         //note gives null error when rb pushed out piece by 0.01 -> not found in dictionary.
@@ -30,7 +31,7 @@ public class KnightPiece : MonoBehaviour
                 if (locationOfTiles.ContainsKey(tilePosition))
                 {
                     Vector3 targetPosition = locationOfTiles[tilePosition].transform.position;
-                    Instantiate(moveableLocationCircle, new Vector3(targetPosition.x, targetPosition.y, -3), Quaternion.identity);
+                    tempMoveableCircle = Instantiate(moveableLocationCircle, new Vector3(targetPosition.x, targetPosition.y, -3), Quaternion.identity);
 
 
                     spawningMoveableCircles = FindObjectOfType<SpawningMoveableCircles>();
@@ -38,7 +39,7 @@ public class KnightPiece : MonoBehaviour
 
                     if (spawningMoveableCircles.hasPieceBlocking)
                     {
-                        Destroy(moveableLocationCircle);
+                        Destroy(tempMoveableCircle);
                     }
                 }
             }

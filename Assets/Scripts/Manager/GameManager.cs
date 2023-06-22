@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
     private GetTile getTile;
     private SpawnPieces spawnPieces;
     //private GirdManager girdManager;
-
     
     private void Awake()
     {

@@ -20,14 +20,15 @@ TagManager:
   - CanTakeCircle
   - PowerUpSquare
   - CanPawnTakeCircle
+  - PawnCanMoveCircle
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Piece
   - Water
   - UI
-  - NoCollision
+  - CanTakeCircle
   - 
   - 
   - 

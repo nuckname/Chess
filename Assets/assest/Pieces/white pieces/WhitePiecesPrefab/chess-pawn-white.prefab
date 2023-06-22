@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -4823248280942078829}
   - component: {fileID: -6619528730667067657}
   - component: {fileID: 7920796206252925544}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: chess-pawn-white
   m_TagString: WhitePawn
   m_Icon: {fileID: 0}

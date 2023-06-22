@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -7629504628718769879}
   - component: {fileID: 4482174644990170746}
   - component: {fileID: 9145444377487774075}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: chess-bishop-white
   m_TagString: WhiteBishop
   m_Icon: {fileID: 0}
@@ -127,7 +127,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveableLocationCircle: {fileID: 939143525464860019, guid: ffded954936d4394b9be6deb29fafacb, type: 3}
   moveableLocationCirclePrefab: {fileID: 0}
-  isBlock: 0
 --- !u!50 &9145444377487774075
 Rigidbody2D:
   serializedVersion: 4

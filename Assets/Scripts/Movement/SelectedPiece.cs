@@ -23,6 +23,8 @@ public class SelectedPiece : MonoBehaviour
     private KnightPiece knightPiece;
     private RookPiece rookPiece;
     private PawnPiece pawnPiece;
+    private QueenPiece queenPiece;
+    private KingPiece kingPiece;
 
     private ClearPreviousSelection clearPreviousSelection;
 
@@ -46,13 +48,8 @@ public class SelectedPiece : MonoBehaviour
         }
 
         Vector3 pos = hit.collider.transform.position;
-
-        //call ClearPreviousSelection script
-
         
         clearPreviousSelection.ClearPreviousClick(lastClicked, currentHighlightSquare);
-
-        //ClearPreviousSelection(pos);
 
         if (hit.collider.gameObject)
         {
@@ -87,40 +84,27 @@ public class SelectedPiece : MonoBehaviour
         else if (hit.collider.gameObject.tag.Contains("Rook"))
         {
             HandleRookPiece(pos, hit);
+
+        }
+
+        else if (hit.collider.gameObject.tag.Contains("Queen"))
+        {
+            HandleQueenPiece(pos, hit);
+        }
+
+        else if (hit.collider.gameObject.tag.Contains("King"))
+        {
+            HandleKingPiece(pos, hit);
         }
     }
+
     private void MovePiece(Vector2 pos)
     {
         //currentHighlightSquare = Instantiate(highlightSquare, new Vector3(position.x, position.y, -3), Quaternion.identity);
         lastClicked.transform.position = new Vector3(pos.x, pos.y, -3);
     }
 
-    //moved to ClearPreviousSelection
-    private void ClearPreviousSelection()
-    {
-        if (lastClicked != null)
-        {
-            ClearAllCanMoveCircles();
-        }
-
-        if (currentHighlightSquare != null)
-        {
-            Destroy(currentHighlightSquare);
-            //Destroy(highlightSquare);
-
-            currentHighlightSquare = null;
-        }
-    }
-
-    private void ClearAllCanMoveCircles()
-    {
-        GameObject[] canMoveCircles = GameObject.FindGameObjectsWithTag("CanMoveCircle");
-        foreach (GameObject circle in canMoveCircles)
-        {
-            Destroy(circle);
-        }
-    }
-    
+    //remove -> passing in locationOfTiles. extremely taxing.
     private void HandleKnightPiece(Vector3 position, RaycastHit2D hit)
     {
         lastClicked = hit.collider.gameObject;
@@ -139,7 +123,7 @@ public class SelectedPiece : MonoBehaviour
     {
         lastClicked = hit.collider.gameObject;
         pawnPiece = FindObjectOfType<PawnPiece>();
-        pawnPiece.OnPieceClickPawn(position, locationOfTiles);
+        pawnPiece.OnPieceClickPawn(position);
     }
 
     private void HandleRookPiece(Vector3 position, RaycastHit2D hit)
@@ -147,6 +131,19 @@ public class SelectedPiece : MonoBehaviour
         lastClicked = hit.collider.gameObject;
         rookPiece = FindObjectOfType<RookPiece>();
         rookPiece.OnPieceClickRook(position, locationOfTiles);
+    }
+
+    private void HandleQueenPiece(Vector3 position, RaycastHit2D hit)
+    {
+        lastClicked = hit.collider.gameObject;
+        queenPiece = FindObjectOfType<QueenPiece>();
+        queenPiece.OnPieceClickQueen(position, locationOfTiles);
+    }
+    private void HandleKingPiece(Vector3 position, RaycastHit2D hit)
+    {
+        lastClicked = hit.collider.gameObject;
+        kingPiece = FindObjectOfType<KingPiece>();
+        kingPiece.OnPieceClickKing(position, locationOfTiles);
     }
 }
 

@@ -52,22 +52,27 @@ public class SpawningMoveableCircles : MonoBehaviour
         }
         else
         {
-            foreach (string piece in piecesColor)
-            {
-                if (collider[1].ToString() == piece)
-                {
-                    posCanTakeCirle = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
-                    Instantiate(canTakeCirle, posCanTakeCirle, Quaternion.identity);
-                    hasPieceBlocking = true;
-                    Destroy(gameObject);
-                    return;
+            ReplaceMoveCircleWithTakeCircle(piecesColor);
+        }
+    }
 
-                }
-                else
-                {
-                    hasPieceBlocking = true;
-                    Destroy(gameObject);
-                }
+    private void ReplaceMoveCircleWithTakeCircle(string[] piecesColor)
+    {
+        foreach (string piece in piecesColor)
+        {
+            if (collider[1].ToString() == piece)
+            {
+                posCanTakeCirle = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
+                //This line needs to be removed if its a pawn? another if statement.
+                Instantiate(canTakeCirle, posCanTakeCirle, Quaternion.identity);
+                hasPieceBlocking = true;
+                Destroy(gameObject);
+                return;
+            }
+            else
+            {
+                hasPieceBlocking = true;
+                Destroy(gameObject);
             }
         }
     }
