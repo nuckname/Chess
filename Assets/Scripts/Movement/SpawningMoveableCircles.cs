@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SpawningMoveableCircles : MonoBehaviour
 {
+    //blockingAndTakingPieceScript.
     public Collider2D[] collider;
 
     public GameObject canTakeCirle;

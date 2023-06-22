@@ -9,6 +9,7 @@ public class KingPiece : MonoBehaviour
     private SpawningMoveableCircles spawningMoveableCircles;
     private GameObject tempMoveCircle;
 
+    
     public void OnPieceClickKing(Vector2 pos, Dictionary<Vector2, Tile> locationOfTiles)
     {
         int j = 1;
@@ -36,5 +37,8 @@ public class KingPiece : MonoBehaviour
             }
             j = 1;
         }
+
     }
+
+
 }

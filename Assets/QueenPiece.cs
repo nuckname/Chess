@@ -4,18 +4,17 @@ using UnityEngine;
 
 public class QueenPiece : MonoBehaviour
 {
-    private BishopPiece bishopPiece;
-    private RookPiece rookPiece;
+    private DirectionalInput directionalInput;
+
     private void Awake()
     {
-        bishopPiece = FindObjectOfType<BishopPiece>();
-        rookPiece = FindObjectOfType<RookPiece>();
+        directionalInput = FindObjectOfType<DirectionalInput>();
     }
 
-    public void OnPieceClickQueen(Vector2 pos, Dictionary<Vector2, Tile> locationOfTiles)
+    public void OnPieceClickQueen(Vector2 pos)
     {
-        bishopPiece.OnPieceClickBishop(pos, locationOfTiles);
-        rookPiece.OnPieceClickRook(pos, locationOfTiles);
-    }
+        int[][] directions = new int[][] { new int[] { -1, -1 }, new int[] { 1, -1 }, new int[] { -1, 1 }, new int[] { 1, 1 }, new int[] { -1, 0 }, new int[] { 1, 0 }, new int[] { 0, 1 }, new int[] { 0, -1 } };
 
+        directionalInput.drawingAttackLines(pos, directions);
+    }
 }

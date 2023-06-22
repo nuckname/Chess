@@ -109,14 +109,14 @@ public class SelectedPiece : MonoBehaviour
     {
         lastClicked = hit.collider.gameObject;
         knightPiece = FindObjectOfType<KnightPiece>();
-        knightPiece.OnPieceClickKnight(position, locationOfTiles);
+        knightPiece.OnPieceClickKnight(position);
     }
 
     private void HandleBishopPiece(Vector3 position, RaycastHit2D hit)
     {
         lastClicked = hit.collider.gameObject;
         bishopPiece = FindObjectOfType<BishopPiece>();
-        bishopPiece.OnPieceClickBishop(position, locationOfTiles);
+        bishopPiece.OnPieceClickBishop(position);
     }
 
     private void HandlePawnPiece(Vector3 position, RaycastHit2D hit)
@@ -130,21 +130,23 @@ public class SelectedPiece : MonoBehaviour
     {
         lastClicked = hit.collider.gameObject;
         rookPiece = FindObjectOfType<RookPiece>();
-        rookPiece.OnPieceClickRook(position, locationOfTiles);
+        rookPiece.OnPieceClickRook(position);
     }
 
     private void HandleQueenPiece(Vector3 position, RaycastHit2D hit)
     {
         lastClicked = hit.collider.gameObject;
         queenPiece = FindObjectOfType<QueenPiece>();
-        queenPiece.OnPieceClickQueen(position, locationOfTiles);
+        queenPiece.OnPieceClickQueen(position);
     }
+
     private void HandleKingPiece(Vector3 position, RaycastHit2D hit)
     {
         lastClicked = hit.collider.gameObject;
         kingPiece = FindObjectOfType<KingPiece>();
         kingPiece.OnPieceClickKing(position, locationOfTiles);
     }
+    
 }
 
 

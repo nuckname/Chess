@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GirdManager : MonoBehaviour
 {
+    //grid is spend wrong.
+
     [SerializeField] private Tile tile;
     public int xHeight;
     public int yHeight;
@@ -12,7 +14,17 @@ public class GirdManager : MonoBehaviour
     [SerializeField] private GameObject debugSqaure;
 
     public Dictionary<Vector2, Tile> tiles;
+   
+    public Tile GetTileAtPosition(Vector2 position)
+    {
+        if (tiles.ContainsKey(position))
+        {
+            return tiles[position];
+        }
+        return null;
+    }
 
+    //GenerateTiles.
     public void GenerateChessBoard()
     {
         tiles = new Dictionary<Vector2, Tile>();
