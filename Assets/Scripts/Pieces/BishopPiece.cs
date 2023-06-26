@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class BishopPiece : MonoBehaviour
 {
+    //Debug.Log(Mathf.Round(10.5f));
     private DirectionalInput directionalInput;
+    public bool onCollisionDestroy = false;
 
     private void Awake()
     {
@@ -18,41 +20,11 @@ public class BishopPiece : MonoBehaviour
         directionalInput.drawingAttackLines(pos, directions);
     }
 
-        /*
-        public void OnPieceClickBishop(Vector2 pos)
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(onCollisionDestroy)
         {
-            int[][] directions = new int[][] { new int[] { -1, -1 }, new int[] { 1, -1 }, new int[] { -1, 1 }, new int[] { 1, 1 } };
-
-            foreach (int[] direction in directions)
-            {
-                int directionX = direction[0];
-                int directionY = direction[1];
-                int j = 1;
-
-                Vector2 tilePosition = new Vector2(pos.x + (j * directionX), pos.y + (j * directionY));
-                Tile tile = gridManager.GetTileAtPosition(tilePosition);
-
-                while (tile != null)
-                {
-                    Instantiate(moveableLocationCircle, new Vector3(tile.transform.position.x, tile.transform.position.y, -3), Quaternion.identity);
-                    moveableLocationCircle.name = $"BishopCanMoveCircle {tilePosition.x}, {tilePosition.y}";
-
-                    spawningMoveableCircles = FindObjectOfType<SpawningMoveableCircles>();
-                    spawningMoveableCircles.isBlocking();
-
-                    if (spawningMoveableCircles.hasPieceBlocking)
-                    {
-                        break;
-                    }
-
-                    j++;
-                    tilePosition = new Vector2(pos.x + (j * directionX), pos.y + (j * directionY));
-                    tile = gridManager.GetTileAtPosition(tilePosition);
-                }
-            }
+            Destroy(gameObject);
         }
-        */
-
-
-
     }
+}

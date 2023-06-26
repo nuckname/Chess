@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class PawnPiece : MonoBehaviour
 {
-    //global variable?
-    //using locationOfTiles is bad as its has all the squares in it.
-
     public GameObject moveableLocationCircle;
     private SpawningMoveableCircles spawningMoveableCircles;
     private ObjectClicker objectClicker;

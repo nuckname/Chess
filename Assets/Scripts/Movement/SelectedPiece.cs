@@ -19,6 +19,8 @@ public class SelectedPiece : MonoBehaviour
 
     private ObjectClicker _hit;
 
+    private CanTakePiece canTakePiece;
+
     private BishopPiece bishopPiece;
     private KnightPiece knightPiece;
     private RookPiece rookPiece;
@@ -31,6 +33,7 @@ public class SelectedPiece : MonoBehaviour
     private void Awake()
     {
         clearPreviousSelection = FindObjectOfType<ClearPreviousSelection>();
+        canTakePiece = FindObjectOfType<CanTakePiece>();
     }
     private void Start()
     {
@@ -41,6 +44,8 @@ public class SelectedPiece : MonoBehaviour
 
     public void selectedPiece(RaycastHit2D hit)
     {
+        print("last clicked: " + lastClicked);
+
         if (hit)
         {
             // handle null case here
@@ -54,11 +59,13 @@ public class SelectedPiece : MonoBehaviour
         if (hit.collider.gameObject)
         {
             currentHighlightSquare = Instantiate(highlightSquare, new Vector3(pos.x, pos.y, -3), Quaternion.identity);
+            print(hit.collider.gameObject);
         }
 
         if (hit.collider.gameObject.tag == "CanMoveCircle")
         {
             MovePiece(pos);
+            //canTakePiece.TakePiece(pos, lastClicked);
         }
 
         if (hit.collider.gameObject.tag == "CanTakeCircle")
@@ -110,6 +117,8 @@ public class SelectedPiece : MonoBehaviour
         lastClicked = hit.collider.gameObject;
         knightPiece = FindObjectOfType<KnightPiece>();
         knightPiece.OnPieceClickKnight(position);
+        //so how need to turn this to false maybe on last clicked or something? just go through all of them to false. like 6 lines of code.
+        //knightPiece.onCollisionDestroy = true;
     }
 
     private void HandleBishopPiece(Vector3 position, RaycastHit2D hit)
@@ -144,7 +153,7 @@ public class SelectedPiece : MonoBehaviour
     {
         lastClicked = hit.collider.gameObject;
         kingPiece = FindObjectOfType<KingPiece>();
-        kingPiece.OnPieceClickKing(position, locationOfTiles);
+        kingPiece.OnPieceClickKing(position);
     }
     
 }

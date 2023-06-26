@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class RandomiseCanMoveCircles : MonoBehaviour
 {
-
     private GirdManager gridManager;
     private Tile tile;
 

@@ -12,9 +12,18 @@ public class KnightPiece : MonoBehaviour
     private bool tileFound;
 
     private GameObject tempMoveableCircle;
+
+    public bool onCollisionDestroy = false;
     private void Awake()
     {
         gridManager = FindObjectOfType<GirdManager>();
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (onCollisionDestroy)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void OnPieceClickKnight(Vector2 pos)
@@ -37,7 +46,7 @@ public class KnightPiece : MonoBehaviour
                 spawningMoveableCircles = FindObjectOfType<SpawningMoveableCircles>();
                 spawningMoveableCircles.isBlocking();
 
-                if (spawningMoveableCircles.hasPieceBlocking)
+                if (!spawningMoveableCircles.hasPieceBlocking)
                 {
                     Destroy(tempMoveableCircle);
                 }

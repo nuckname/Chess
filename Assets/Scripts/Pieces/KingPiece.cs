@@ -8,11 +8,21 @@ public class KingPiece : MonoBehaviour
     public GameObject moveableLocationCircle;
     private SpawningMoveableCircles spawningMoveableCircles;
     private GameObject tempMoveCircle;
-
     
-    public void OnPieceClickKing(Vector2 pos, Dictionary<Vector2, Tile> locationOfTiles)
+
+    private DirectionalInput directionalInput;
+
+    private GirdManager gridManager;
+    private bool tileFound;
+
+    private GameObject tempMoveableCircle;
+    private void Awake()
     {
-        int j = 1;
+        gridManager = FindObjectOfType<GirdManager>();
+    }
+
+    public void OnPieceClickKing(Vector2 pos)
+    {
         int[][] directions = new int[][] { new int[] { -1, 0 }, new int[] { 1, 0 }, new int[] { 0, 1 }, new int[] { 0, -1 }, new int[] { -1, -1 }, new int[] { 1, -1 }, new int[] { -1, 1 }, new int[] { 1, 1 } };
 
         foreach (int[] direction in directions)
@@ -20,10 +30,12 @@ public class KingPiece : MonoBehaviour
             int directionX = direction[0];
             int directionY = direction[1];
 
-            if(locationOfTiles.ContainsKey(new Vector2(pos.x + (j * directionX), pos.y + (j * directionY))))
+            Vector2 tilePosition = new Vector2(pos.x + directionX, pos.y + directionY);
+            tileFound = gridManager.GetTileAtPosition(tilePosition);
+
+            if (tileFound)
             {
-                tempMoveCircle = Instantiate(moveableLocationCircle, new Vector3(locationOfTiles[new Vector2(pos.x + (j * directionX), pos.y + (j * directionY))].transform.position.x, locationOfTiles[new Vector2(pos.x + (j * directionX), pos.y + (j * directionY))].transform.position.y, -3), Quaternion.identity);
-                moveableLocationCircle.name = ($"BishopCanMoveCircle {pos.x + (j * directionX)}, {pos.y + (j * directionY)}");
+                tempMoveableCircle = Instantiate(moveableLocationCircle, new Vector3(tilePosition.x, tilePosition.y, -3), Quaternion.identity);
 
                 spawningMoveableCircles = FindObjectOfType<SpawningMoveableCircles>();
                 spawningMoveableCircles.isBlocking();
@@ -32,12 +44,9 @@ public class KingPiece : MonoBehaviour
                 {
                     Destroy(tempMoveCircle);
                 }
-
-                j++;
             }
-            j = 1;
+           
         }
-
     }
 
 

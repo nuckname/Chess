@@ -51,5 +51,7 @@ public class GirdManager : MonoBehaviour
         float offsetX = (float)yHeight * tile.transform.localScale.x / 2 - 0.5f;
         float offsetY = (float)xHeight * tile.transform.localScale.y / 2 - 0.5f;
         cam.transform.position = new Vector3(offsetX, offsetY, -10);
+
+        
     }
 }

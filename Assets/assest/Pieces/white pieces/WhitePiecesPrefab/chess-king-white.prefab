@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3651628578969448696}
   - component: {fileID: -9045861340265514297}
   - component: {fileID: 464551311687440521}
+  - component: {fileID: 8957158163901926936}
   m_Layer: 3
   m_Name: chess-king-white
   m_TagString: WhiteKing
@@ -133,3 +134,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &8957158163901926936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9145486316277503858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 436abd950a518714a817c422f10253f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveableLocationCircle: {fileID: 939143525464860019, guid: ffded954936d4394b9be6deb29fafacb, type: 3}
