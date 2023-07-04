@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawningMoveableCircles : MonoBehaviour
+public class BlockingAndTaking : MonoBehaviour
 {
     //blockingAndTakingPieceSpawningCircleScript.
     public Collider2D[] collider;
@@ -24,7 +24,7 @@ public class SpawningMoveableCircles : MonoBehaviour
 
     public void isBlocking()
     {
-        collider = Physics2D.OverlapBoxAll(transform.position, new Vector2(1, 1), 1f);
+        collider = Physics2D.OverlapBoxAll(transform.position, new Vector2(0.5F, 0.5f), 0.5f);
 
         //put this in a method.
         if (objectClicker.colorOfPieceClicked == "black")
@@ -51,10 +51,17 @@ public class SpawningMoveableCircles : MonoBehaviour
             Destroy(gameObject);
             hasPieceBlocking = true;
         }
-        else
+        //this is actualy destroying the pieces.
+        if(collider.Length == 2)
         {
             ReplaceMoveCircleWithTakeCircle(piecesColor);
         }
+
+        /*
+        else
+        {
+            ReplaceMoveCircleWithTakeCircle(piecesColor);
+        }*/
     }
 
     private void ReplaceMoveCircleWithTakeCircle(string[] piecesColor)
@@ -64,7 +71,6 @@ public class SpawningMoveableCircles : MonoBehaviour
             if (collider[1].ToString() == piece)
             {
                 posCanTakeCirle = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
-                //This line needs to be removed if its a pawn? another if statement.
                 Instantiate(canTakeCirle, posCanTakeCirle, Quaternion.identity);
                 hasPieceBlocking = true;
                 Destroy(gameObject);

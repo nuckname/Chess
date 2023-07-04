@@ -6,7 +6,7 @@ public class KingPiece : MonoBehaviour
 {
     private bool hasMoved;
     public GameObject moveableLocationCircle;
-    private SpawningMoveableCircles spawningMoveableCircles;
+    private BlockingAndTaking blockingAndTaking;
     private GameObject tempMoveCircle;
     
 
@@ -35,15 +35,18 @@ public class KingPiece : MonoBehaviour
 
             if (tileFound)
             {
-                tempMoveableCircle = Instantiate(moveableLocationCircle, new Vector3(tilePosition.x, tilePosition.y, -3), Quaternion.identity);
+                 Instantiate(moveableLocationCircle, new Vector3(tilePosition.x, tilePosition.y, -3), Quaternion.identity);
 
-                spawningMoveableCircles = FindObjectOfType<SpawningMoveableCircles>();
-                spawningMoveableCircles.isBlocking();
+                blockingAndTaking = FindObjectOfType<BlockingAndTaking>();
+                //destroies object in this gameObject in this script.
+                blockingAndTaking.isBlocking();
 
+                /*
                 if (spawningMoveableCircles.hasPieceBlocking)
                 {
                     Destroy(tempMoveCircle);
                 }
+                */
             }
            
         }

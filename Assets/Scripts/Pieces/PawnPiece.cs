@@ -5,9 +5,8 @@ using UnityEngine;
 public class PawnPiece : MonoBehaviour
 {
     public GameObject moveableLocationCircle;
-    private SpawningMoveableCircles spawningMoveableCircles;
+    private BlockingAndTaking blockingAndTakingPawn;
     private ObjectClicker objectClicker;
-    private PawnAttackingGameObject pawnAttackingGameObject;
 
     private PawnAttacking pawnAttacking;
 
@@ -19,36 +18,61 @@ public class PawnPiece : MonoBehaviour
             Vector2 targetPos = new Vector2(pos.x, pos.y + (direction * i));
 
             //currently no out of bounds check.
-            Instantiate(moveableLocationCircle, new Vector3(targetPos.x, targetPos.y, -3), Quaternion.identity);
-            spawningMoveableCircles = FindObjectOfType<SpawningMoveableCircles>();
+            //currently collider has no array.
+             Instantiate(moveableLocationCircle, new Vector3(targetPos.x, targetPos.y, -3), Quaternion.identity);
+            //pawnMoveableCircles = FindObjectOfType<PawnMoveableCircles>();
+            
 
-            spawningMoveableCircles.isBlocking();
-
-            if (spawningMoveableCircles.hasPieceBlocking)
+            GameObject foundObject = GameObject.FindWithTag("CanMoveCircle");
+            print("found Object:" + foundObject);
+            if (foundObject != null)
             {
-                break;
+                blockingAndTakingPawn = foundObject.GetComponent<BlockingAndTaking>();
+                pawnAttacking = foundObject.GetComponent<PawnAttacking>();
+
+                //dont know if i need null checker.
+                if (blockingAndTakingPawn != null)
+                {
+                    /*
+                    if(spawningMoveableCircles.collider[0] != null)
+                    {
+                        print("very cool information: " + spawningMoveableCircles.collider[0]);
+
+                    }
+                    */
+                }
             }
         }
+    }
+
+    private void blockingPawnAttackingInFrontOfPawn()
+    {
+        //if moveableLocationCircle hits enemy pawn.
     }
 
     public void OnPieceClickPawn(Vector2 pos)
     {
         objectClicker = FindObjectOfType<ObjectClicker>();
+        //this scripot isnt oin the same GameOBject and is giving null error.
+        //use tag to find script and then call .GeneratePawnAttackingCircles.
         pawnAttacking = FindObjectOfType<PawnAttacking>();
-        pawnAttackingGameObject = FindObjectOfType<PawnAttackingGameObject>();
+        //pawnAttackingGameObject = FindObjectOfType<PawnAttackingGameObject>();
 
         if (objectClicker.colorOfPieceClicked == "white")
         {
             if (pos.y == 1)
             {
+                //for ampersand spawn two pawnPieces on y 2 and y 3.
+                //then remove when whites turn again.
+                //same for black.
                 pawnMovement(true, pos, 1);
-                pawnAttacking.GeneratePawnAttackingCircles(pos, 1, -1, -1 ,-1);
+                pawnAttacking.GeneratePawnAttackingCircles(pos, false);
                 
             }
             else
             {
                 pawnMovement(false, pos, 1);
-                pawnAttacking.GeneratePawnAttackingCircles(pos, 1, -1, -1, -1);
+                pawnAttacking.GeneratePawnAttackingCircles(pos, false);
             }
         }
 
@@ -57,14 +81,12 @@ public class PawnPiece : MonoBehaviour
             if(pos.y == 6)
             {
                 pawnMovement(true, pos, -1);
-                pawnAttacking.GeneratePawnAttackingCircles(pos, - 1, 1, 1, 1);
-
+                pawnAttacking.GeneratePawnAttackingCircles(pos, true);
             }
             else
             {
                 pawnMovement(false, pos, -1);
-                pawnAttacking.GeneratePawnAttackingCircles(pos, -1, 1, 1, 1);
-
+                pawnAttacking.GeneratePawnAttackingCircles(pos, true);
             }
         }
     }

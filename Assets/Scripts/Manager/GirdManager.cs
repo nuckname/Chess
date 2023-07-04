@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GirdManager : MonoBehaviour
 {
-    //grid is spend wrong.
+    //grid is spelt wrong.
 
     [SerializeField] private Tile tile;
     public int xHeight;

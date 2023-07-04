@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2107229530568903413}
   m_Layer: 0
   m_Name: isPawnAttacking
-  m_TagString: CanPawnTakeCircle
+  m_TagString: CanTakeCircle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

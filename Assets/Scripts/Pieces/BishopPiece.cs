@@ -19,6 +19,7 @@ public class BishopPiece : MonoBehaviour
 
         directionalInput.drawingAttackLines(pos, directions);
     }
+    /*
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -27,4 +28,5 @@ public class BishopPiece : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    */
 }

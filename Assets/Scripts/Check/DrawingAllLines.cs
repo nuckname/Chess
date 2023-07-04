@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class DrawingAllLines : MonoBehaviour
 {
+    //for check.
+    GameObject[] blackPawns;
+
+    private SelectedPiece selectedPiece;
+    //this should go in game Gamaer and then be passed into this script. cleaner
     private void Start()
     {
-        //each turn it would call all pieces. 
+        blackPawns = GameObject.FindGameObjectsWithTag("BlackBishop");
+        
     }
+
+    //call HandleBishopPiece from selectedPiece script
 
     /*Draw every piece that can move in a different color.
      * if the collilder hits an enemy king -> print check. 
@@ -16,7 +24,7 @@ public class DrawingAllLines : MonoBehaviour
     /*
     private void Awake()
     {
-        bishopPiece = FindObjectOfType<BishopPiece>();
+        bishopPiece = FindObjectOfType<BishopPiece>();12
         rookPiece = FindObjectOfType<RookPiece>();
     }
 

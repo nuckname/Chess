@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 939143525464860021}
   - component: {fileID: 939143525464860020}
-  - component: {fileID: 7036807703756050205}
   - component: {fileID: 5853168138077074797}
   - component: {fileID: 1281936079420414501}
+  - component: {fileID: 4383931293079497255}
+  - component: {fileID: 1867550123648677932}
   m_Layer: 0
   m_Name: CanMoveCircle
   m_TagString: CanMoveCircle
@@ -87,22 +88,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7036807703756050205
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 939143525464860019}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c868b9db670b83a4b868ce0198b9ac99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  collider: []
-  canTakeCirle: {fileID: 2954360253626550671, guid: 2ace13dbcfc79fd49b4f16ff20c4ca2f, type: 3}
-  isBlockingValue: 0
-  hasPieceBlocking: 0
 --- !u!58 &5853168138077074797
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -131,3 +116,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86f9db344066e074794341a39195fc1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4383931293079497255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 939143525464860019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd340452854873e448ddc1da42ec9b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPawnAttacking: {fileID: 939143525464860019, guid: 92ff6411375732f4bb56f18bc9f07556, type: 3}
+--- !u!114 &1867550123648677932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 939143525464860019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5b35c5565061c646acf3a490980daf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collider: []
+  canTakeCirle: {fileID: 2954360253626550671, guid: 2ace13dbcfc79fd49b4f16ff20c4ca2f, type: 3}
+  isBlockingValue: 0
+  hasPieceBlocking: 0

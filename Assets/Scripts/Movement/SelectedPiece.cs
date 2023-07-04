@@ -13,13 +13,10 @@ public class SelectedPiece : MonoBehaviour
 
     private GirdManager gridManager;
 
-    public Dictionary<Vector2, Tile> locationOfTiles;
-
-    public GameObject lastClicked;
+    [SerializeField]
+    private GameObject lastClicked;
 
     private ObjectClicker _hit;
-
-    private CanTakePiece canTakePiece;
 
     private BishopPiece bishopPiece;
     private KnightPiece knightPiece;
@@ -30,16 +27,21 @@ public class SelectedPiece : MonoBehaviour
 
     private ClearPreviousSelection clearPreviousSelection;
 
+    private HasPieceMoved hasPieceMoved;
+
     private void Awake()
     {
         clearPreviousSelection = FindObjectOfType<ClearPreviousSelection>();
-        canTakePiece = FindObjectOfType<CanTakePiece>();
     }
     private void Start()
     {
-        gridManager = FindObjectOfType<GirdManager>();
-        locationOfTiles = gridManager.tiles;
-        
+        //rookPiece = rookPiece.GetComponent<RookPiece>();
+        //hasPieceMoved = FindObjectOfType<HasPieceMoved>();
+
+        //rookPiece = FindObjectOfType<RookPiece>();
+        //might give wrong gameobject.
+        //RookPiece = GameObject.FindGameObjectWithTag("rook");
+
     }
 
     public void selectedPiece(RaycastHit2D hit)
@@ -48,7 +50,7 @@ public class SelectedPiece : MonoBehaviour
 
         if (hit)
         {
-            // handle null case here
+            //handle null case here
             print("hit");
         }
 
@@ -59,13 +61,24 @@ public class SelectedPiece : MonoBehaviour
         if (hit.collider.gameObject)
         {
             currentHighlightSquare = Instantiate(highlightSquare, new Vector3(pos.x, pos.y, -3), Quaternion.identity);
-            print(hit.collider.gameObject);
         }
 
+        //moving to other script isnt working.
         if (hit.collider.gameObject.tag == "CanMoveCircle")
         {
+            /*
+            if(lastClicked.gameObject == rookPiece.gameObject)
+            {
+                print("rook pos: " + rookPiece.gameObject.transform.position);
+                //rookPiece.hasPieceMoved = true;
+            }
+            */
             MovePiece(pos);
-            //canTakePiece.TakePiece(pos, lastClicked);
+        }
+
+        if(hit.collider.gameObject.tag == "PawnCanMoveCircle")
+        {
+            MovePiece(pos);
         }
 
         if (hit.collider.gameObject.tag == "CanTakeCircle")
@@ -75,35 +88,42 @@ public class SelectedPiece : MonoBehaviour
 
         else if (hit.collider.gameObject.tag.Contains("Knight"))
         {
-            HandleKnightPiece(pos, hit);
+            HandleKnightPiece(pos);
+            LastClickedGameObject(hit);
         }
 
         else if (hit.collider.gameObject.tag.Contains("Bishop"))
         {
-            HandleBishopPiece(pos, hit);
+            HandleBishopPiece(pos);
+            LastClickedGameObject(hit);
         }
 
         else if (hit.collider.gameObject.tag.Contains("Pawn"))
         {
-            HandlePawnPiece(pos, hit);
+            HandlePawnPiece(pos);
+            LastClickedGameObject(hit);
         }
 
         else if (hit.collider.gameObject.tag.Contains("Rook"))
         {
-            HandleRookPiece(pos, hit);
-
+            HandleRookPiece(pos);
+            LastClickedGameObject(hit);
         }
 
         else if (hit.collider.gameObject.tag.Contains("Queen"))
         {
-            HandleQueenPiece(pos, hit);
+            HandleQueenPiece(pos);
+            LastClickedGameObject(hit);
         }
 
         else if (hit.collider.gameObject.tag.Contains("King"))
         {
-            HandleKingPiece(pos, hit);
+            HandleKingPiece(pos);
+            LastClickedGameObject(hit);
         }
     }
+
+
 
     private void MovePiece(Vector2 pos)
     {
@@ -111,47 +131,43 @@ public class SelectedPiece : MonoBehaviour
         lastClicked.transform.position = new Vector3(pos.x, pos.y, -3);
     }
 
-    //remove -> passing in locationOfTiles. extremely taxing.
-    private void HandleKnightPiece(Vector3 position, RaycastHit2D hit)
+    private void LastClickedGameObject(RaycastHit2D hit)
     {
         lastClicked = hit.collider.gameObject;
-        knightPiece = FindObjectOfType<KnightPiece>();
-        knightPiece.OnPieceClickKnight(position);
-        //so how need to turn this to false maybe on last clicked or something? just go through all of them to false. like 6 lines of code.
-        //knightPiece.onCollisionDestroy = true;
     }
 
-    private void HandleBishopPiece(Vector3 position, RaycastHit2D hit)
+    private void HandleKnightPiece(Vector3 position)
     {
-        lastClicked = hit.collider.gameObject;
+        knightPiece = FindObjectOfType<KnightPiece>();
+        knightPiece.OnPieceClickKnight(position);
+    }
+
+    public void HandleBishopPiece(Vector3 position)
+    {
         bishopPiece = FindObjectOfType<BishopPiece>();
         bishopPiece.OnPieceClickBishop(position);
     }
 
-    private void HandlePawnPiece(Vector3 position, RaycastHit2D hit)
+    private void HandlePawnPiece(Vector3 position)
     {
-        lastClicked = hit.collider.gameObject;
         pawnPiece = FindObjectOfType<PawnPiece>();
         pawnPiece.OnPieceClickPawn(position);
     }
 
-    private void HandleRookPiece(Vector3 position, RaycastHit2D hit)
+    private void HandleRookPiece(Vector3 position)
     {
-        lastClicked = hit.collider.gameObject;
         rookPiece = FindObjectOfType<RookPiece>();
         rookPiece.OnPieceClickRook(position);
     }
 
-    private void HandleQueenPiece(Vector3 position, RaycastHit2D hit)
+    private void HandleQueenPiece(Vector3 position)
     {
-        lastClicked = hit.collider.gameObject;
         queenPiece = FindObjectOfType<QueenPiece>();
         queenPiece.OnPieceClickQueen(position);
     }
 
-    private void HandleKingPiece(Vector3 position, RaycastHit2D hit)
+    private void HandleKingPiece(Vector3 position)
     {
-        lastClicked = hit.collider.gameObject;
         kingPiece = FindObjectOfType<KingPiece>();
         kingPiece.OnPieceClickKing(position);
     }

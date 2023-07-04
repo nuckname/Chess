@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PawnAttackingGameObject : MonoBehaviour
 {
+    //on the isPawnAttacking GameObject. (red circle)
     public Collider2D[] collider;
     public GameObject canTakeCirle;
     private ObjectClicker objectClicker;
@@ -54,7 +55,6 @@ public class PawnAttackingGameObject : MonoBehaviour
 
         if (collider.Length == 2)
         {
-            
             CantAttackSameColor(colorPieces);
             CantHaveAttackCircle();
 

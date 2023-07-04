@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DirectionalInput : MonoBehaviour
 {
-    private SpawningMoveableCircles spawningMoveableCircles;
+    private BlockingAndTaking blockingAndTaking;
     private GirdManager gridManager;
     private bool tileFound;
 
@@ -30,11 +30,10 @@ public class DirectionalInput : MonoBehaviour
                 Instantiate(moveableLocationCircle, new Vector3(tile.transform.position.x, tile.transform.position.y, -3), Quaternion.identity);
 
                 //this is blocking, scripted is name wrong.
-                //im getting this object too much.
-                spawningMoveableCircles = FindObjectOfType<SpawningMoveableCircles>();
-                spawningMoveableCircles.isBlocking();
+                blockingAndTaking = FindObjectOfType<BlockingAndTaking>();
+                blockingAndTaking.isBlocking();
 
-                if (spawningMoveableCircles.hasPieceBlocking)
+                if (blockingAndTaking.hasPieceBlocking)
                 {
                     break;
                 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class KnightPiece : MonoBehaviour
 {
     public GameObject moveableLocationCircle;
-    private SpawningMoveableCircles spawningMoveableCircles;
+    private BlockingAndTaking blockingAndTaking;
     private Collider2D[] _collider;
 
     private GirdManager gridManager;
@@ -13,24 +13,13 @@ public class KnightPiece : MonoBehaviour
 
     private GameObject tempMoveableCircle;
 
-    public bool onCollisionDestroy = false;
     private void Awake()
     {
         gridManager = FindObjectOfType<GirdManager>();
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (onCollisionDestroy)
-        {
-            Destroy(gameObject);
-        }
-    }
 
     public void OnPieceClickKnight(Vector2 pos)
     {
-        //note gives null error when rb pushed out piece by 0.01 -> not found in dictionary.
-        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-
         int[] offsetXValues = { -1, 1, -2, 2, -2, 2, -1, 1 };
         int[] offsetYValues = { 2, 2, -1, -1, 1, 1, -2, -2 };
 
@@ -43,13 +32,9 @@ public class KnightPiece : MonoBehaviour
             {
                 tempMoveableCircle = Instantiate(moveableLocationCircle, new Vector3(tilePosition.x, tilePosition.y, -3), Quaternion.identity);
 
-                spawningMoveableCircles = FindObjectOfType<SpawningMoveableCircles>();
-                spawningMoveableCircles.isBlocking();
+                blockingAndTaking = FindObjectOfType<BlockingAndTaking>();
+                blockingAndTaking.isBlocking();
 
-                if (!spawningMoveableCircles.hasPieceBlocking)
-                {
-                    Destroy(tempMoveableCircle);
-                }
             }
         }
     }
