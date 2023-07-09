@@ -7,7 +7,9 @@ public class ObjectClicker: MonoBehaviour
     public RaycastHit2D hit;
     private SelectedPiece pieceMovement;
     private GetColorPosOnClick getColorPosOnClick;
+    //can make global variable using static but in to deep.
     public string colorOfPieceClicked;
+    
 
     private void Awake()
     {

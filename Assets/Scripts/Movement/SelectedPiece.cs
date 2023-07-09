@@ -27,20 +27,20 @@ public class SelectedPiece : MonoBehaviour
 
     private ClearPreviousSelection clearPreviousSelection;
 
-    private HasPieceMoved hasPieceMoved;
+    [SerializeField]
+    private GameObject RookPiece;
 
+    [SerializeField]
+    private GameObject[] rookPieceWhite;
+
+    [SerializeField]
+    private GameObject[] rookPieceBlack;
     private void Awake()
     {
         clearPreviousSelection = FindObjectOfType<ClearPreviousSelection>();
     }
     private void Start()
     {
-        //rookPiece = rookPiece.GetComponent<RookPiece>();
-        //hasPieceMoved = FindObjectOfType<HasPieceMoved>();
-
-        //rookPiece = FindObjectOfType<RookPiece>();
-        //might give wrong gameobject.
-        //RookPiece = GameObject.FindGameObjectWithTag("rook");
 
     }
 
@@ -66,13 +66,15 @@ public class SelectedPiece : MonoBehaviour
         //moving to other script isnt working.
         if (hit.collider.gameObject.tag == "CanMoveCircle")
         {
-            /*
-            if(lastClicked.gameObject == rookPiece.gameObject)
+            if (lastClicked.CompareTag("WhiteRook") || lastClicked.CompareTag("BlackRook"))
             {
-                print("rook pos: " + rookPiece.gameObject.transform.position);
-                //rookPiece.hasPieceMoved = true;
+                // Get the RookPiece component and set hasMoved to true
+                RookPiece rookPiece = lastClicked.GetComponent<RookPiece>();
+                rookPiece.hasMoved = true;
             }
-            */
+
+            //Ampersand here also.
+
             MovePiece(pos);
         }
 

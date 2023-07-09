@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -9045861340265514297}
   - component: {fileID: 464551311687440521}
   - component: {fileID: 2839259983852099797}
+  - component: {fileID: -8985525754787627357}
   m_Layer: 3
   m_Name: chess-king-black
   m_TagString: BlackKing
@@ -147,3 +148,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveableLocationCircle: {fileID: 939143525464860019, guid: ffded954936d4394b9be6deb29fafacb, type: 3}
+--- !u!114 &-8985525754787627357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9145486316277503858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: becd5adc1a23bd84ab924cd6e10cfa83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

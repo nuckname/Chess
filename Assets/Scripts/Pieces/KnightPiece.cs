@@ -33,6 +33,7 @@ public class KnightPiece : MonoBehaviour
                 tempMoveableCircle = Instantiate(moveableLocationCircle, new Vector3(tilePosition.x, tilePosition.y, -3), Quaternion.identity);
 
                 blockingAndTaking = FindObjectOfType<BlockingAndTaking>();
+                blockingAndTaking.addColliderBoxes();
                 blockingAndTaking.isBlocking();
 
             }

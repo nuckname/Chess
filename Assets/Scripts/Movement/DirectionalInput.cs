@@ -31,6 +31,7 @@ public class DirectionalInput : MonoBehaviour
 
                 //this is blocking, scripted is name wrong.
                 blockingAndTaking = FindObjectOfType<BlockingAndTaking>();
+                blockingAndTaking.addColliderBoxes();
                 blockingAndTaking.isBlocking();
 
                 if (blockingAndTaking.hasPieceBlocking)

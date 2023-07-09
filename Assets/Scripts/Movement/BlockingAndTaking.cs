@@ -22,9 +22,14 @@ public class BlockingAndTaking : MonoBehaviour
         objectClicker = FindObjectOfType<ObjectClicker>();
     }
 
-    public void isBlocking()
+    public void addColliderBoxes()
     {
         collider = Physics2D.OverlapBoxAll(transform.position, new Vector2(0.5F, 0.5f), 0.5f);
+    }
+
+    public void isBlocking()
+    {
+        //collider = Physics2D.OverlapBoxAll(transform.position, new Vector2(0.5F, 0.5f), 0.5f);
 
         //put this in a method.
         if (objectClicker.colorOfPieceClicked == "black")
@@ -35,6 +40,14 @@ public class BlockingAndTaking : MonoBehaviour
         if (objectClicker.colorOfPieceClicked == "white")
         {
             BlockingCalculator(blackPieces);
+        }
+    }
+
+    public void pawnFrontMoveCircleBlocking()
+    {
+        if (collider.Length == 2)
+        {
+            Destroy(gameObject);
         }
     }
 
@@ -56,12 +69,6 @@ public class BlockingAndTaking : MonoBehaviour
         {
             ReplaceMoveCircleWithTakeCircle(piecesColor);
         }
-
-        /*
-        else
-        {
-            ReplaceMoveCircleWithTakeCircle(piecesColor);
-        }*/
     }
 
     private void ReplaceMoveCircleWithTakeCircle(string[] piecesColor)

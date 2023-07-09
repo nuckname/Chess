@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: -9045861340265514297}
   - component: {fileID: 464551311687440521}
   - component: {fileID: 8957158163901926936}
+  - component: {fileID: -6426887185569641932}
+  - component: {fileID: 7834857361260741621}
   m_Layer: 3
   m_Name: chess-king-white
   m_TagString: WhiteKing
@@ -147,3 +149,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveableLocationCircle: {fileID: 939143525464860019, guid: ffded954936d4394b9be6deb29fafacb, type: 3}
+  hasRookMoved: {fileID: 0}
+--- !u!114 &-6426887185569641932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9145486316277503858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: becd5adc1a23bd84ab924cd6e10cfa83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7834857361260741621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9145486316277503858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d896e6c24469a0f45b3872fc285258e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
